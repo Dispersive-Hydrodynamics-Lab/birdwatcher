@@ -22,22 +22,60 @@ import scipy.misc as scm
 import scipy.ndimage.filters as scfilt
 import scipy.signal as scsig
 from tqdm import tqdm
+import typing
+import enforce
 
 
 def main():
     """ Handle program execution """
     args = get_args()
-    for filename in args.files:
-        print('Processing {}\n'.format(filename) + ('=' * (len(filename) + 11)))
-        rawdata  = load_data(filename)
-        data     = rawdata['right_edges'] - rawdata['left_edges']
-        savename = os.path.basename(filename).split('.')[0]
-        phase_portrait(data, args.write, args.show, savename)
-        peaks, solitons, soliton_hash = plot_solitons(data, savename,
-                                                      show=args.show,
-                                                      write=args.write)
-        rv = solitons_to_rv(solitons, soliton_hash, len(data[0]), len(data))
-        plot_cdf(rv, savename, args.write, args.show)
+    if args.create:
+        create_solitons(args.files[0])
+    else:
+        for filename in args.files:
+            print('Processing {}\n'.format(filename) + ('=' * (len(filename) + 11)))
+            rawdata  = load_data(filename)
+            data     = rawdata['right_edges'] - rawdata['left_edges']
+            savename = os.path.basename(filename).split('.')[0]
+            phase_portrait(data, args.write, args.show, savename)
+            peaks, solitons, soliton_hash = plot_solitons(data, savename,
+                                                          show=args.show,
+                                                          write=args.write)
+            rv = solitons_to_rv(solitons, soliton_hash, len(data[0]), len(data))
+            plot_cdf(rv, savename, args.write, args.show)
+
+
+def create_solitons(filename):
+    domain             = np.arange(0, 400, 0.001)
+    number_of_solitons = np.random.randint(25, 40)
+    soliton_heights    = np.random.randint(1, 10, size=(number_of_solitons))
+    soliton_positions  = np.random.choice(domain, size=number_of_solitons, replace=True)
+    gaussians          = np.ones(len(domain))
+    derivatives        = np.zeros(len(domain))
+    print('Generating {}'.format(number_of_solitons))
+    for i in range(number_of_solitons):
+        gaussian = gaussian_approx(domain, soliton_heights[i], soliton_positions[i])
+        derivative = get_derivative(domain, soliton_heights[i], soliton_positions[i])
+        gaussians += gaussian
+        derivatives += derivative
+
+    plt.figure()
+    plt.plot(domain, gaussians, 'r-')
+    plt.plot(domain, derivatives, 'b-')
+    plt.show()
+
+    output = {'domain': domain, 'area': gaussians, 'area_derivative': derivatives}
+    sco.savemat(filename, output)
+
+
+def gaussian_approx(domain, amplitude, position):
+    gaussian = amplitude * np.exp(-(domain - position)**2 / (4 * np.log(1 + amplitude)))
+    return gaussian
+
+
+def get_derivative(domain, amplitude, position):
+    gaussian = amplitude * np.exp(-(domain - position)**2 / (4 * np.log(1 + amplitude)))
+    return (-(domain - position) / (2 * np.log(1 + amplitude))) * gaussian
 
 
 def solitons_to_rv(solitons, soliton_hash, maxtime, maxpos, binsize=20):
@@ -403,6 +441,8 @@ def get_args():
                         help=('Show Figures'))
     parser.add_argument('-p', '--plot', action='store_true', default=False,
                         help=('Plot the data'))
+    parser.add_argument('-c', '--create', action='store_true', default=False,
+                        help='Create Initial Soliton Profile')
     args = parser.parse_args()
     try:
         assert len(args.files) != 0
