@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.5
+
 """
 Checks if distribution is Poisson
 
@@ -22,8 +23,9 @@ import scipy.misc as scm
 import scipy.ndimage.filters as scfilt
 import scipy.signal as scsig
 from tqdm import tqdm
-import typing
-import enforce
+
+from typing import Dict, Tuple, List, Optional, TypeVar
+from enforce import runtime_validation
 
 
 def main():
@@ -34,8 +36,9 @@ def main():
     else:
         for filename in args.files:
             print('Processing {}\n'.format(filename) + ('=' * (len(filename) + 11)))
-            rawdata  = load_data(filename)
-            data     = rawdata['right_edges'] - rawdata['left_edges']
+            rawdata = load_data(filename)
+            # TODO: make a nice easy way to auto-determine orientation - gitlab/issue/1
+            data = np.fliplr(rawdata['right_edges'] - rawdata['left_edges'])
             savename = os.path.basename(filename).split('.')[0]
             phase_portrait(data, args.write, args.show, savename)
             peaks, solitons, soliton_hash = plot_solitons(data, savename,
@@ -45,13 +48,16 @@ def main():
             plot_cdf(rv, savename, args.write, args.show)
 
 
-def create_solitons(filename):
-    domain             = np.arange(0, 400, 0.001)
+def create_solitons(filename: str) -> None:
+    """
+    Create initial soliton profile for solver. Saves output as .mat file
+    """
+    domain = np.arange(0, 400, 0.001)
     number_of_solitons = np.random.randint(25, 40)
-    soliton_heights    = np.random.randint(1, 10, size=(number_of_solitons))
-    soliton_positions  = np.random.choice(domain, size=number_of_solitons, replace=True)
-    gaussians          = np.ones(len(domain))
-    derivatives        = np.zeros(len(domain))
+    soliton_heights = np.random.randint(1, 10, size=(number_of_solitons))
+    soliton_positions = np.random.choice(domain, size=number_of_solitons, replace=True)
+    gaussians = np.ones(len(domain))
+    derivatives = np.zeros(len(domain))
     print('Generating {}'.format(number_of_solitons))
     for i in range(number_of_solitons):
         gaussian = gaussian_approx(domain, soliton_heights[i], soliton_positions[i])
@@ -68,13 +74,19 @@ def create_solitons(filename):
     sco.savemat(filename, output)
 
 
-def gaussian_approx(domain, amplitude, position):
-    gaussian = amplitude * np.exp(-(domain - position)**2 / (4 * np.log(1 + amplitude)))
+def gaussian_approx(domain: np.ndarray, amplitude: float, position: float) -> np.ndarray:
+    """
+    Gaussian Approximation to soliton.
+    """
+    gaussian = amplitude * np.exp(-(domain - position) ** 2 / (4 * np.log(1 + amplitude)))
     return gaussian
 
 
-def get_derivative(domain, amplitude, position):
-    gaussian = amplitude * np.exp(-(domain - position)**2 / (4 * np.log(1 + amplitude)))
+def get_derivative(domain: np.ndarray, amplitude: float, position: float) -> np.ndarray:
+    """
+    Derivative of Gaussian Approximation
+    """
+    gaussian = amplitude * np.exp(-(domain - position) ** 2 / (4 * np.log(1 + amplitude)))
     return (-(domain - position) / (2 * np.log(1 + amplitude))) * gaussian
 
 
@@ -129,18 +141,30 @@ def phase_portrait(data, write, show, filename):
         plt.show()
 
 
-def plot_solitons(data, filename, show=False, write=False):
+plot_solitons_RT = TypeVar('RT', List[np.ndarray], Dict[str, np.ndarray], Dict[str, np.ndarray])
+@runtime_validation
+def plot_solitons(data: np.ndarray,
+                  filename: str,
+                  show: Optional[bool]=False,
+                  write: Optional[bool]=False) -> plot_solitons_RT:
     """
     Plot (and animate) the solitons.
 
-    :param data: np.ndarray => 2d array of values
-    :param filename: str => the savename of the file
-    :param show: bool => whether or not to show the plot
-    :param write: bool => Whether or not to save the plot
+    :param data: 2d array of values
+    :param filename: the savename of the file
+    :param show: whether or not to show the plot
+    :param write: Whether or not to save the plot
 
-    :return peaks: list => contains a 2d np.ndarray for every frame
-    :return solitons: dictionary => soliton name to array of times and positions
-    :return soliton_hash: dictionary => soliton name to dictionary of times to positions
+    :return peaks: contains a 2d np.ndarray for every frame
+    :return solitons: soliton name to array of times and positions
+    :return soliton_hash: soliton name to dictionary of times to positions
+
+    TODO: need to auto config parameters:
+        * gaussian filter parameter
+        * threshold
+        * find_peaks parameter
+        * x and y limits
+        * Frame intervals
     """
     # Initialize datapoints
     domain = np.arange(len(data))
@@ -161,11 +185,11 @@ def plot_solitons(data, filename, show=False, write=False):
     # Plot Smoothed Data
     line1, = ax.plot(domain, cdata, 'b-', alpha=0.5)
 
-    vert_domain = np.arange(0, 250)
+    vert_domain = np.arange(0, 50)
     ax.plot(len(data) * 0.25 * np.ones(len(vert_domain)), vert_domain, 'r-')
 
     # Set figure axes limits
-    ax.set_ylim(0, 250)
+    ax.set_ylim(0, 50)
     ax.set_xlim(0, domain.max())
 
     # Grab and plot peaks
@@ -195,10 +219,10 @@ def plot_solitons(data, filename, show=False, write=False):
     rectangle = plt.Rectangle((0, 0), 250, 20, fc='w', ec='k', clip_on=True)
     ax.add_patch(rectangle)
 
-    def animate(i):
+    def animate(i: int):
         """ Animation function for plot """
-        cdata = data[:, i]   # New datapoints
-        scdata = sdata[:, i] # New Smoothed datapoints
+        cdata = data[:, i]  # New datapoints
+        scdata = sdata[:, i]  # New Smoothed datapoints
         line.set_ydata(scdata)
         line1.set_ydata(cdata)
         points.set_data(peaks[i][:, 0], peaks[i][:, 1])
@@ -228,9 +252,6 @@ def plot_solitons(data, filename, show=False, write=False):
         writer = Writer(fps=10, metadata=dict(artist='Will Farmer'), bitrate=1800)
         anim_name = './output/{}_solitons.mp4'.format(filename)
         ani.save(anim_name, writer=writer)
-        os.system('ffmpeg -i "{}" "{}"'.format(anim_name,
-                                               '.'.join(anim_name.split('.')[:-1]) + '.gif'))
-        os.system('rm {}'.format(anim_name))
     if show:
         plt.show()
 
@@ -246,7 +267,7 @@ def peaks_func(d, domain):
 
     :return: np.ndarray => array of XY coordinates of the positions
     """
-    thresh = 120  # TODO: Make this adjustable
+    thresh = 2  # TODO: Make this adjustable - issue#2
     peakrange = np.arange(1, 100)
     rawpeaks = np.array(scsig.find_peaks_cwt(d, peakrange))
     rawpeaks = rawpeaks[rawpeaks < rawpeaks.max()]  # Remove rightmost peak (false positive)
@@ -268,7 +289,8 @@ def get_peaks(domain, sdata):
     """
     peaks = []
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        futures = {executor.submit(peaks_func, sdata[:, i], domain):i for i in range(len(sdata[0]))}
+        futures = {executor.submit(peaks_func, sdata[:, i], domain): i for i in
+                   range(len(sdata[0]))}
         for future in tqdm(concurrent.futures.as_completed(futures),
                            desc='Calculating Peaks', leave=True, total=len(sdata[0])):
             i = futures[future]
@@ -289,12 +311,14 @@ def get_solitons(peaks):
     :return solitons: dictionary => soliton name to array of times and positions
     :return soliton_hash: dictionary => soliton name to dictionary of times to positions
     """
+
     def names():
         """ Generator for Unicode soliton names """
         i = 913
         while True:
             yield chr(i)
             i += 1
+
     name = names()
     solitons = {}
     soliton_hash = {}
@@ -302,7 +326,7 @@ def get_solitons(peaks):
         cstate = peaks[i]
         nstate = peaks[i + 1]
 
-        for csoli in cstate:                      # For each point in the current state
+        for csoli in cstate:  # For each point in the current state
             distances = np.zeros(len(nstate))
             # Check distance between cpoint and (potential) npoint
             for j in range(len(nstate)):
@@ -321,7 +345,7 @@ def get_solitons(peaks):
             else:
                 nkey = next(name)
                 solitons[nkey] = [(i, nsoli)]
-                soliton_hash[nkey] = {i:nsoli}
+                soliton_hash[nkey] = {i: nsoli}
     return solitons, soliton_hash
 
 
@@ -367,7 +391,7 @@ def get_poisson_cdf(l, k_vals):
     cdf = np.zeros((len(k_vals)))
     for i in range(len(k_vals)):
         subset = np.arange(int(k_vals[i]))
-        cdf[i] = np.sum((l**subset) / scm.factorial(subset))
+        cdf[i] = np.sum((l ** subset) / scm.factorial(subset))
     cdf *= np.exp(-l)
     return cdf
 
@@ -395,8 +419,8 @@ def plot_cdf(data, filename, write, show):
     :return: None
     """
     min_s = 0  # least amount of solitons to pass per slot
-    max_s = 10 # most amount of solitons to pass
-    k_vals = np.arange(min_s, max_s, 0.01)   # cause i like smooth lines
+    max_s = 10  # most amount of solitons to pass
+    k_vals = np.arange(min_s, max_s, 0.01)  # cause i like smooth lines
 
     print('Finding Empirical CDF')
     ecdf = get_empirical_cdf(data, k_vals)
@@ -424,7 +448,7 @@ def plot_cdf(data, filename, write, show):
         plt.show()
 
 
-def get_args():
+def get_args() -> argparse.Namespace:
     """
     Get arguments
 
@@ -444,10 +468,12 @@ def get_args():
     parser.add_argument('-c', '--create', action='store_true', default=False,
                         help='Create Initial Soliton Profile')
     args = parser.parse_args()
+
     try:
         assert len(args.files) != 0
     except AssertionError:
         print('Missing Files')
+        sys.exit(0)
     return args
 
 
