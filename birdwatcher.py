@@ -68,7 +68,7 @@ def create_solitons(filename: str) -> None:
     plt.figure()
     plt.plot(domain, gaussians, 'r-')
     plt.plot(domain, derivatives, 'b-')
-    plt.show()
+    plt.savefig('./out.png')
 
     output = {'domain': domain, 'area': gaussians, 'area_derivative': derivatives}
     sco.savemat(filename, output)
