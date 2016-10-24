@@ -1,3 +1,11 @@
 data*
 .idea*
 *.mat
+*.webm
+*.gif
+*.mp4
+*.npy
+*.png
+output*
+numerics*
+solitons*
