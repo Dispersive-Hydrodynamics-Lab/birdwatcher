@@ -1,0 +1,217 @@
+2017-02-26 12:06:52,586 	 ~~~STARTING~~~
+2017-02-26 12:06:52,586 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 12:06:52,599 	 DATABASE	Tables Created
+2017-02-26 12:07:04,132 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat created. Adding to Queue
+2017-02-26 12:07:04,144 	 PARSER0	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat
+2017-02-26 12:07:04,235 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat created. Adding to Queue
+2017-02-26 12:07:04,246 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-02-26 12:07:04,251 	 PARSER1	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat
+2017-02-26 12:07:04,257 	 PARSER2	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-02-26 12:07:17,884 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-02-26 12:07:17,884 	 PARSER3	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-02-26 12:07:30,218 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-02-26 12:07:30,218 	 PARSER2	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-02-26 12:07:40,507 	 ~~~CLOSING~~~
+2017-02-26 12:07:40,507 	 PARSER2	Received POISON PILL
+2017-02-26 12:07:40,508 	 PARSER1	Received POISON PILL
+2017-02-26 12:07:40,508 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 12:07:40,508 	 PARSER3	Received POISON PILL
+2017-02-26 12:07:40,508 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 12:07:40,508 	 DATABASE	Dying happily
+2017-02-26 12:07:40,508 	 PARSER0	Received POISON PILL
+2017-02-26 12:07:40,508 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 12:07:40,509 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 12:09:08,907 	 ~~~STARTING~~~
+2017-02-26 12:09:08,907 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 12:09:08,921 	 DATABASE	Tables Created
+2017-02-26 12:09:21,952 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat created. Adding to Queue
+2017-02-26 12:09:21,968 	 PARSER0	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat
+2017-02-26 12:09:22,020 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat created. Adding to Queue
+2017-02-26 12:09:22,027 	 PARSER1	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat
+2017-02-26 12:09:22,053 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-02-26 12:09:22,069 	 PARSER2	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-02-26 12:09:36,928 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-02-26 12:09:36,928 	 PARSER3	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-02-26 12:09:49,007 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-02-26 12:09:49,007 	 PARSER1	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-02-26 12:09:56,590 	 ~~~CLOSING~~~
+2017-02-26 12:09:56,591 	 PARSER0	Received POISON PILL
+2017-02-26 12:09:56,591 	 PARSER2	Received POISON PILL
+2017-02-26 12:09:56,591 	 PARSER3	Received POISON PILL
+2017-02-26 12:09:56,591 	 PARSER1	Received POISON PILL
+2017-02-26 12:09:56,591 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 12:09:56,591 	 DATABASE	Dying happily
+2017-02-26 12:09:56,591 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 12:09:56,592 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 12:09:56,592 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 12:16:20,784 	 ~~~STARTING~~~
+2017-02-26 12:16:20,784 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 12:16:20,797 	 DATABASE	Tables Created
+2017-02-26 12:16:56,996 	 ~~~CLOSING~~~
+2017-02-26 12:16:56,997 	 PARSER0	Received POISON PILL
+2017-02-26 12:16:56,997 	 PARSER1	Received POISON PILL
+2017-02-26 12:16:56,997 	 PARSER2	Received POISON PILL
+2017-02-26 12:16:56,998 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 12:16:56,997 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 12:16:56,997 	 DATABASE	Dying happily
+2017-02-26 12:16:56,997 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 12:16:56,997 	 PARSER3	Received POISON PILL
+2017-02-26 12:16:56,998 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 12:21:30,435 	 ~~~STARTING~~~
+2017-02-26 12:21:30,436 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 12:21:30,449 	 DATABASE	Tables Created
+2017-02-26 12:22:10,590 	 ~~~CLOSING~~~
+2017-02-26 12:22:10,590 	 PARSER0	Received POISON PILL
+2017-02-26 12:22:10,590 	 PARSER2	Received POISON PILL
+2017-02-26 12:22:10,591 	 PARSER1	Received POISON PILL
+2017-02-26 12:22:10,591 	 PARSER3	Received POISON PILL
+2017-02-26 12:22:10,591 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 12:22:10,591 	 DATABASE	Dying happily
+2017-02-26 12:22:10,591 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 12:22:10,591 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 12:22:10,591 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 12:28:07,570 	 ~~~STARTING~~~
+2017-02-26 12:28:07,570 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 12:28:07,585 	 DATABASE	Tables Created
+2017-02-26 12:28:25,604 	 ~~~CLOSING~~~
+2017-02-26 12:28:25,604 	 PARSER2	Received POISON PILL
+2017-02-26 12:28:25,605 	 PARSER3	Received POISON PILL
+2017-02-26 12:28:25,605 	 PARSER0	Received POISON PILL
+2017-02-26 12:28:25,605 	 DATABASE	Dying happily
+2017-02-26 12:28:25,605 	 PARSER1	Received POISON PILL
+2017-02-26 12:28:25,605 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 12:28:25,605 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 12:28:25,606 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 12:28:25,606 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 18:32:22,755 	 ~~~STARTING~~~
+2017-02-26 18:32:22,755 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 18:32:22,768 	 DATABASE	Tables Created
+2017-02-26 18:32:28,883 	 ~~~CLOSING~~~
+2017-02-26 18:32:28,884 	 PARSER2	Received POISON PILL
+2017-02-26 18:32:28,884 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 18:32:28,885 	 DATABASE	Dying happily
+2017-02-26 18:32:28,885 	 PARSER1	Received POISON PILL
+2017-02-26 18:32:28,885 	 PARSER3	Received POISON PILL
+2017-02-26 18:32:28,886 	 PARSER0	Received POISON PILL
+2017-02-26 18:32:28,886 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 18:32:28,886 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 18:32:28,886 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 18:34:03,750 	 ~~~STARTING~~~
+2017-02-26 18:34:03,750 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 18:34:03,762 	 DATABASE	Tables Created
+2017-02-26 18:34:09,863 	 ~~~CLOSING~~~
+2017-02-26 18:34:09,863 	 PARSER3	Received POISON PILL
+2017-02-26 18:34:09,863 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 18:34:09,864 	 PARSER2	Received POISON PILL
+2017-02-26 18:34:09,864 	 PARSER1	Received POISON PILL
+2017-02-26 18:34:09,864 	 DATABASE	Dying happily
+2017-02-26 18:34:09,864 	 PARSER0	Received POISON PILL
+2017-02-26 18:34:09,864 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 18:34:09,865 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 18:34:09,865 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 18:34:59,699 	 ~~~STARTING~~~
+2017-02-26 18:34:59,699 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 18:34:59,711 	 DATABASE	Tables Created
+2017-02-26 18:35:23,519 	 ~~~CLOSING~~~
+2017-02-26 18:35:23,519 	 PARSER3	Received POISON PILL
+2017-02-26 18:35:23,519 	 PARSER0	Received POISON PILL
+2017-02-26 18:35:23,519 	 PARSER1	Received POISON PILL
+2017-02-26 18:35:23,519 	 PARSER2	Received POISON PILL
+2017-02-26 18:35:23,520 	 DATABASE	Dying happily
+2017-02-26 18:35:23,520 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 18:35:23,520 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 18:35:23,520 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 18:35:23,520 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 18:36:24,584 	 ~~~STARTING~~~
+2017-02-26 18:36:24,584 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 18:36:24,597 	 DATABASE	Tables Created
+2017-02-26 18:36:35,804 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat created. Adding to Queue
+2017-02-26 18:36:35,824 	 PARSER0	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat
+2017-02-26 18:36:35,935 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat created. Adding to Queue
+2017-02-26 18:36:35,941 	 PARSER1	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat
+2017-02-26 18:36:35,956 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-02-26 18:36:35,958 	 PARSER2	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-02-26 18:36:57,388 	 HANDLER	./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-02-26 18:36:57,388 	 PARSER3	Received ./data/conduit_eqtn_tmax_200_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-02-26 18:37:01,634 	 ~~~CLOSING~~~
+2017-02-26 18:37:01,635 	 DATABASE	Dying happily
+2017-02-26 18:37:01,635 	 PARSER1	Received POISON PILL
+2017-02-26 18:37:01,635 	 PARSER0	Received POISON PILL
+2017-02-26 18:37:01,635 	 PARSER2	Received POISON PILL
+2017-02-26 18:37:01,636 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 18:37:01,636 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 18:37:01,636 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 18:37:01,636 	 PARSER3	Received POISON PILL
+2017-02-26 18:37:01,637 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 18:38:16,521 	 ~~~STARTING~~~
+2017-02-26 18:38:16,521 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 18:38:16,538 	 DATABASE	Tables Created
+2017-02-26 18:38:23,937 	 ~~~CLOSING~~~
+2017-02-26 18:38:23,938 	 PARSER2	Received POISON PILL
+2017-02-26 18:38:23,938 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 18:38:23,938 	 PARSER0	Received POISON PILL
+2017-02-26 18:38:23,938 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 18:38:23,939 	 PARSER1	Received POISON PILL
+2017-02-26 18:38:23,939 	 PARSER3	Received POISON PILL
+2017-02-26 18:38:23,939 	 DATABASE	Dying happily
+2017-02-26 18:38:23,939 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 18:38:23,939 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 18:39:03,468 	 ~~~STARTING~~~
+2017-02-26 18:39:03,468 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 18:39:03,484 	 DATABASE	Tables Created
+2017-02-26 18:39:10,870 	 ~~~CLOSING~~~
+2017-02-26 18:39:10,870 	 PARSER1	Received POISON PILL
+2017-02-26 18:39:10,870 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 18:39:10,871 	 PARSER0	Received POISON PILL
+2017-02-26 18:39:10,871 	 DATABASE	Dying happily
+2017-02-26 18:39:10,871 	 PARSER2	Received POISON PILL
+2017-02-26 18:39:10,871 	 PARSER3	Received POISON PILL
+2017-02-26 18:39:10,871 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 18:39:10,871 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 18:39:10,871 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 18:39:29,130 	 ~~~STARTING~~~
+2017-02-26 18:39:29,130 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 18:39:29,143 	 DATABASE	Tables Created
+2017-02-26 18:39:36,001 	 ~~~CLOSING~~~
+2017-02-26 18:39:36,002 	 PARSER0	Received POISON PILL
+2017-02-26 18:39:36,002 	 PARSER1	Received POISON PILL
+2017-02-26 18:39:36,003 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 18:39:36,002 	 PARSER3	Received POISON PILL
+2017-02-26 18:39:36,003 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 18:39:36,003 	 DATABASE	Dying happily
+2017-02-26 18:39:36,003 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-26 18:39:36,002 	 PARSER2	Received POISON PILL
+2017-02-26 18:39:36,004 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 18:47:51,762 	 ~~~STARTING~~~
+2017-02-26 18:47:51,763 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
+2017-02-26 18:47:51,782 	 DATABASE	Tables Created
+2017-02-26 18:48:04,620 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat created. Adding to Queue
+2017-02-26 18:48:04,639 	 PARSER0	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat
+2017-02-26 18:48:04,758 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat created. Adding to Queue
+2017-02-26 18:48:04,759 	 PARSER1	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat
+2017-02-26 18:48:04,782 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-02-26 18:48:04,783 	 PARSER2	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-02-26 18:48:07,251 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat created. Adding to Queue
+2017-02-26 18:48:07,251 	 PARSER3	Received ./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/parameters.mat
+2017-02-26 18:48:07,386 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat created. Adding to Queue
+2017-02-26 18:48:07,387 	 PARSER0	Received ./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00000.mat
+2017-02-26 18:48:07,415 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-02-26 18:48:07,415 	 PARSER1	Received ./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-02-26 18:48:14,578 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-02-26 18:48:14,579 	 PARSER2	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-02-26 18:48:23,923 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-02-26 18:48:23,924 	 PARSER3	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-02-26 18:48:30,961 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-02-26 18:48:30,962 	 PARSER0	Received ./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-02-26 18:48:34,721 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
+2017-02-26 18:48:34,722 	 PARSER1	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-02-26 18:48:41,429 	 ~~~CLOSING~~~
+2017-02-26 18:48:41,431 	 PARSER2	Received POISON PILL
+2017-02-26 18:48:41,431 	 PARSER3	Received POISON PILL
+2017-02-26 18:48:41,436 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-26 18:48:41,432 	 PARSER1	Received POISON PILL
+2017-02-26 18:48:41,435 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-26 18:48:41,435 	 DATABASE	Dying happily
+2017-02-26 18:48:41,431 	 PARSER0	Received POISON PILL
+2017-02-26 18:48:41,448 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-26 18:48:41,449 	 PARSER0	Sent `DEATH`, dying gracefully.

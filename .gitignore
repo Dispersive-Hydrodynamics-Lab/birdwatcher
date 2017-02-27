@@ -1,4 +1,4 @@
-data*
+*data*
 .idea*
 *.mat
 *.webm
@@ -6,6 +6,6 @@ data*
 *.mp4
 *.npy
 *.png
-output*
-numerics*
-solitons*
+*output*
+*numerics*
+*solitons*

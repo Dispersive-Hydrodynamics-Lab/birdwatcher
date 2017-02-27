@@ -1,0 +1,26 @@
+Creating a One Dimensional Gas in Viscous Fluid
+Will Farmer
+
+University: University of Colorado, Boulder,
+
+Advisors/Collaborators: Mark Hoefer, Michelle Maiden
+
+In the viscous fluid conduit system we can observe a variety of structures
+including solitons, dispersive shock waves, and other coherent structures. This
+system is characterized by its formation of a deformable, fluid-filled pipe that
+results from pumping a buoyant, viscous interior fluid into a dense, more
+viscous exterior fluid.  Conduits are observed experimentally as a vertical
+column where the interior fluid is dyed black for contrast with the colorless
+exterior fluid. This work will examine the possibility of a soliton gas forming
+from the regularized formation of discrete solitons.
+
+A soliton gas in a one-dimensional system can be characterized by the fact that
+its solitons are Poisson-distributed in time, so the body of this work is to
+determine if our initial set of solitons (which are uniform in spacing with
+uniform-distributed amplitudes) eventually converge to being
+Poisson-distributed. Since we are dealing with a continuous-time system we also
+leverage the Poisson-point process model which assumes continuous-time.  This
+model's properties are instrumental in the resulting analysis.
+
+This initial work is done with high-performance numerical simulations, with
+planned extension to acquiring experimental data in the next few months.
