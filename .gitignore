@@ -1,10 +1,11 @@
 *data*
 .idea*
-*.mat
+.mat
 *.webm
 *.gif
 *.mp4
 *.npy
 *.png
 *output*
+old_process*
 *numerics*
