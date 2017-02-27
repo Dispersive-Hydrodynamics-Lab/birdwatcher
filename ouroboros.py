@@ -3,6 +3,7 @@
 # TODO: Check if running every 30 or so minutes and if nothing has happened email me
 
 import sys, os
+import random
 import argparse
 import time
 import threading
@@ -216,9 +217,14 @@ class ParseFile(threading.Thread):
 
     @staticmethod
     def sim_exponential(cdf, domain_size):
-        cdf_vals = cdf(np.arange(0, 100, 0.1))
-
-        return [1, 2, 3]
+        domain = np.arange(0, 100, 0.01)
+        cdf_vals = np.array(cdf(domain))
+        cursor = 25
+        spots = []
+        while cursor < domain_size - 25:
+            cursor += domain[cdf_vals == random.random()]
+            spots.append(cursor)
+        return spots
 
     @staticmethod
     def generate_initial_profile(domain_size: Optional[int]=500,
@@ -424,6 +430,7 @@ class Database(threading.Thread):
                         else:
                             initial_profile_L1 = ParseFile.generate_initial_profile(info[1][1], cdf, int(info[0][0] / 2))
                             initial_profile_L2 = ParseFile.generate_initial_profile(info[1][1] * 2, cdf, int(info[0][0] / 2))
+                        print('~~~~~~~~~~~~~~~~~~~~~~~ROTATING~~~~~~~~~~~~~~~~~~~~~~~')
                         self.MATLAB_queue.put(('runN', (initial_profile_L1, initial_profile_L2)))
                 c.close()
 
