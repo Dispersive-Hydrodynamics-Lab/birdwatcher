@@ -147,8 +147,23 @@ class ParseFile(threading.Thread):
     def parse_file(self, filename):
         # First let's load the parameters if they haven't loaded already
         file_directory = os.path.dirname(filename)
+        parameter_file = sc_io.loadmat(os.path.join(file_directory, 'parameters.mat'))
+        # Now load in the file that was loaded
         datafile = sc_io.loadmat(filename)
+        data = {
+            'zmaz': parameters['zmax'],
+            't': parameters['t'],
+            'data': datafile['A']
+        }
         return
+
+    def get_peaks(self):
+        thresh = 1.1  # TODO: Make this adjustable - issue#2
+        peakrange = np.arange(1, 100)
+        rawpeaks = np.array(scsig.find_peaks_cwt(d, peakrange))
+        rawpeaks = rawpeaks[rawpeaks > rawpeaks.min()]  # Remove leftmost peak (false positive at input)
+        threshpeaks = rawpeaks[d[rawpeaks] > thresh]
+        return np.array([domain[threshpeaks], d[threshpeaks]]).T
 
     @staticmethod
     def generate_initial_profile(domain_size: Optional[int]=500, number_of_solitons: Optional[int]=16) -> Dict[str, np.ndarray]:
