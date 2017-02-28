@@ -57,7 +57,7 @@ if save_on
     
     if periodic
     % Save parameters
-        save(savefile,'t','Nz','dz','zmax','f','periodic');
+        save(savefile,'t','Nz','dz','zmax','f','periodic', 'worknum');
     % Run timestepper
         conduit_solver_periodic( t, zmax, Nz, h, f, data_dir );      
     else    

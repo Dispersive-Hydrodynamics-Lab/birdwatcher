@@ -33,6 +33,7 @@ import matlab.engine
 from typing import Optional, Dict, List, Any
 
 
+GOAL = 0
 DEATH = 'POISON PILL'
 DIRSTR = ('conduit_eqtn_wnum_{}_tmax_{}_zmax_{}'
           '_Nz_{}_order_4_init_condns_soligas_'
@@ -56,6 +57,7 @@ def main():
     write_queue    = queue.Queue()
     MATLAB_queue   = queue.Queue()
     deletion_queue = queue.Queue()
+    done_queue     = queue.Queue()
 
     # don't ask why this is here
     sim = RunSimulation(MATLAB_queue, args.num_simulations)
@@ -67,7 +69,7 @@ def main():
     observer.start()
 
     print('(2/5) Starting Database')
-    db = Database(args.database, write_queue, MATLAB_queue, sim)
+    db = Database(args.database, write_queue, MATLAB_queue, sim, done_queue)
     db.start()
 
     print('(3/5) Starting Workers')
@@ -85,14 +87,20 @@ def main():
     deleter.start()
 
     # Start the initial sims
-    initial_profile_L1 = ParseFile.generate_initial_profile(domain_size=500, number_of_solitons=16)
-    initial_profile_L2 = ParseFile.generate_initial_profile(domain_size=1000, number_of_solitons=32)
-    MATLAB_queue.put(('run0', (initial_profile_L1, initial_profile_L2)))
+    for i in range(args.num_simulations):
+        initial_profile_L1 = ParseFile.generate_initial_profile(domain_size=500, number_of_solitons=16, wnum=i)
+        initial_profile_L2 = ParseFile.generate_initial_profile(domain_size=1000, number_of_solitons=32, wnum=i)
+        MATLAB_queue.put(('run{}'.format(i),
+                         (initial_profile_L1, initial_profile_L2)))
 
     try:
         print('Sleeping')
         while True:
             time.sleep(1)
+            done = done_queue.get()
+            if done == DEATH:
+                print('finished')
+                break
     except KeyboardInterrupt:
         logging.info('~~~CLOSING~~~')
 
@@ -196,9 +204,10 @@ class ParseFile(threading.Thread):
             'domain': np.arange(0,
                                 parameters['zmax'][0][0],
                                 parameters['dz'][0][0]),
-            'tnow': datafile['tnow'][0][0]
+            'tnow': datafile['tnow'][0][0],
+            'wnum': parameters['worknum'][0][0]
         }
-        self.write_queue.put(('init', (file_directory, data['zmax'], data['t'])))
+        self.write_queue.put(('init', (file_directory, data['zmax'], data['t'], data['wnum'])))
         peaks = self.get_peaks(data['data'], data['domain'])
         self.write_queue.put(('peaks', (peaks, data['tnow'], file_directory)))
         poissonness, ecdf = self.get_poissonness(peaks)
@@ -228,7 +237,7 @@ class ParseFile(threading.Thread):
         return np.array([domain[threshpeaks], data[threshpeaks]]).T
 
     @staticmethod
-    def generate_initial_profile_by_cdf(domain_size: int, cdf, iter_num: int, tmax: int):
+    def generate_initial_profile_by_cdf(domain_size: int, cdf, iter_num: int, tmax: int, wnum: int):
         H = 0.01  # Precision of domain
         domain = np.arange(0, domain_size, H)
         soliton_positions = ParseFile.sim_exponential(cdf, domain_size)
@@ -246,7 +255,7 @@ class ParseFile(threading.Thread):
             'zmax': domain_size,
             'iter': iter_num,
             'tmax': tmax,
-            'wnum': 0,   # TODO
+            'wnum': wnum,
             'Nz': int(domain_size / H)
         }
         return output
@@ -266,6 +275,7 @@ class ParseFile(threading.Thread):
 
     @staticmethod
     def generate_initial_profile(domain_size: Optional[int]=500,
+                                 wnum: Optional[int]=1,
                                  number_of_solitons: Optional[int]=16,
                                  iter_num: Optional[int]=1,
                                  tmax: Optional[int]=600) -> Dict[str, np.ndarray]:
@@ -285,7 +295,7 @@ class ParseFile(threading.Thread):
             'zmax': domain_size,
             'iter': iter_num,
             'tmax': tmax,
-            'wnum': 0,   # TODO
+            'wnum': wnum,
             'Nz': int(domain_size / H)
         }
         return output
@@ -330,12 +340,13 @@ class ParseFile(threading.Thread):
 
 
 class Database(threading.Thread):
-    def __init__(self, filename, q0, q1, sim, *args, **kwargs):
+    def __init__(self, filename, q0, q1, sim, done, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.filename = filename
-        self.write_queue = q0
+        self.filename     = filename
+        self.write_queue  = q0
         self.MATLAB_queue = q1
-        self.sim = sim
+        self.done_queue   = done
+        self.sim          = sim
         self._init_db()
 
     def log(self, message):
@@ -346,6 +357,7 @@ class Database(threading.Thread):
         c = conn.cursor()
         c.execute(('CREATE TABLE IF NOT EXISTS simulations('
                         'id INTEGER PRIMARY KEY,'
+                        'wnum INTEGER,'
                         'directory TEXT)'))
         c.execute(('CREATE TABLE IF NOT EXISTS parameters('
                         'id INTEGER PRIMARY KEY,'
@@ -381,16 +393,17 @@ class Database(threading.Thread):
             message = self.write_queue.get()
             if message == DEATH:
                 self.log('Dying happily')
+                conn.close()
                 break
 
             if message[0] == 'init':
                 c = conn.cursor()
-                directory, zmax, t = message[1]
+                directory, zmax, t, wnum = message[1]
                 directory = os.path.basename(directory)
                 c.execute('SELECT COUNT(*) from simulations WHERE directory=?', (directory,))
                 results = c.fetchall()
                 if results[0][0] == 0:
-                    c.execute('INSERT INTO simulations(directory) VALUES(?)', (directory,))
+                    c.execute('INSERT INTO simulations(wnum, directory) VALUES(?,?)', (int(wnum), directory))
                     c.execute('SELECT id FROM simulations WHERE directory=?', (directory,))
                     sim_id = c.fetchall()[0][0]
                     c.execute('INSERT INTO parameters(simulationid, zmax) VALUES(?,?)',
@@ -421,6 +434,12 @@ class Database(threading.Thread):
                 c.execute('INSERT INTO poissonness(simulationid, t, p) VALUES(?,?,?)',
                           (sim_id, float(tnow), poissonness))
                 conn.commit()
+                # Now see how we are next to goal
+                if float(tnow) > GOAL:
+                    self.done_queue.put(DEATH)
+                    c.close()
+                    conn.close()
+                    break
                 # Now check to see if we're past threshold (arbitrary 10%)
                 # First get the min of the two maxtimes and their corresponding p vals
                 dirs = {d: 0 for d in self.sim.get_both_dirnames(os.path.basename(directory))}
@@ -457,7 +476,7 @@ class Database(threading.Thread):
                         # and restart
                         info = []
                         for d in dirs:
-                            c.execute(('SELECT simulations.id, parameters.zmax '
+                            c.execute(('SELECT simulations.id, parameters.zmax, simulations.wnum '
                                            'FROM simulations '
                                            'INNER JOIN parameters '
                                            'ON simulations.id = parameters.simulationid '
@@ -468,11 +487,13 @@ class Database(threading.Thread):
                         initial_profile_L1 = ParseFile.generate_initial_profile_by_cdf(old_2l_zmax,
                                                                                        ecdf,
                                                                                        old_run_num + 1,
-                                                                                       info[0][1]**2)
+                                                                                       info[0][1]**2,
+                                                                                       info[0][2])
                         initial_profile_L2 = ParseFile.generate_initial_profile_by_cdf(old_2l_zmax * 2,
                                                                                        ecdf,
                                                                                        old_run_num + 2,
-                                                                                       info[0][1]**2)
+                                                                                       info[0][1]**2,
+                                                                                       info[0][2])
                         print('~~~~~~~~~~~~~~~~~~~~~~~ROTATING~~~~~~~~~~~~~~~~~~~~~~~')
                         self.MATLAB_queue.put(('runN', (initial_profile_L1, initial_profile_L2)))
                 c.close()
@@ -557,6 +578,7 @@ class MATLABScript(threading.Thread):
 
 
 def get_args():
+    global GOAL
     parser = argparse.ArgumentParser()
     parser.add_argument('directory', metavar='d', type=str, nargs='*',
                         default='.',
@@ -569,9 +591,12 @@ def get_args():
                         help='Database file to use.')
     parser.add_argument('-t', '--testing', action='store_true', default=False,
                         help='Run in test mode (i.e. immediately exit)')
+    parser.add_argument('-g', '--goal', type=int, default=100,
+                        help='Goal time to reach. When ANY sim hits this the entire thing stops.')
     args = parser.parse_args()
     if isinstance(args.directory, list):
         args.directory = args.directory[0]
+    GOAL = args.goal
     return args
 
 
