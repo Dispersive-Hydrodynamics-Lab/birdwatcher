@@ -52,32 +52,37 @@ def main():
     logging.info('~~~STARTING~~~')
     logging.info(str(args))
 
-    parse_queue  = queue.Queue()
-    write_queue  = queue.Queue()
-    MATLAB_queue = queue.Queue()
+    parse_queue    = queue.Queue()
+    write_queue    = queue.Queue()
+    MATLAB_queue   = queue.Queue()
+    deletion_queue = queue.Queue()
 
     # don't ask why this is here
     sim = RunSimulation(MATLAB_queue, args.num_simulations)
 
-    print('(1/4) Starting Filesystem Observer')
+    print('(1/5) Starting Filesystem Observer')
     handler = SimulationHandler(parse_queue)
     observer = Observer()
     observer.schedule(handler, args.directory, recursive=True)
     observer.start()
 
-    print('(2/4) Starting Database')
+    print('(2/5) Starting Database')
     db = Database(args.database, write_queue, MATLAB_queue, sim)
     db.start()
 
-    print('(3/4) Starting Workers')
+    print('(3/5) Starting Workers')
     workers = []
     for i in range(args.num_workers):
-        parser = ParseFile(parse_queue, write_queue, i)
+        parser = ParseFile(parse_queue, write_queue, deletion_queue, i)
         parser.start()
         workers.append(parser)
 
-    print('(4/4) Starting Simulations')
+    print('(4/5) Starting Simulations')
     sim.start()
+
+    print('(5/5) Starting Deleter')
+    deleter = Deleter(deletion_queue)
+    deleter.start()
 
     # Start the initial sims
     initial_profile_L1 = ParseFile.generate_initial_profile(domain_size=500, number_of_solitons=16)
@@ -91,21 +96,23 @@ def main():
     except KeyboardInterrupt:
         logging.info('~~~CLOSING~~~')
 
-    print('(1/4) Closing Simulations')
+    print('(1/5) Closing Simulations')
     MATLAB_queue.put(DEATH)
-    print('(2/4) Closing Workers')
+    sim.join()
+    print('(2/5) Closing Workers')
     for i in range(args.num_workers):
         parse_queue.put(DEATH)
-    print('(3/4) Closing Database')
-    write_queue.put(DEATH)
-    print('(4/4) Closing Observer')
-    observer.stop()
-
-    sim.join()
     for worker in workers:
         worker.join()
+    print('(3/5) Closing Database')
+    write_queue.put(DEATH)
     db.join()
+    print('(4/5) Closing Observer')
+    observer.stop()
     observer.join()
+    print('(5/5) Closing Deleter')
+    deletion_queue.put(DEATH)
+    deleter.join()
 
     return  # let's not get willy nilly with emails yet....
     print('Sending exit email')
@@ -133,12 +140,35 @@ class SimulationHandler(FileSystemEventHandler):
             self.files_to_parse.put(event.src_path)
 
 
+class Deleter(threading.Thread):
+    def __init__(self, q, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.input_queue = q
+        self.files_for_deletion = {}
+
+    def run(self):
+        while True:
+            message = self.input_queue.get()
+            if message == DEATH:
+                break
+
+            sim_name = os.path.basename(os.path.dirname(message))
+            if sim_name not in list(self.files_for_deletion.keys()):
+                self.files_for_deletion[sim_name] = [os.path.basename(message)]
+            else:
+                self.files_for_deletion[sim_name].append(os.path.basename(message))
+                for file in sorted(self.files_for_deletion[sim_name][:-1], key=lambda s: int(s.split('.')[0])):
+                    os.remove(os.path.join(os.path.dirname(message), file))
+                self.files_for_deletion[sim_name] = [self.files_for_deletion[sim_name][-1]]
+
+
 class ParseFile(threading.Thread):
-    def __init__(self, q0, q1, i, *args, **kwargs):
+    def __init__(self, q0, q1, q2, i, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.files_to_parse = q0
-        self.write_queue = q1
-        self.worker_num = i
+        self.write_queue    = q1
+        self.deletion_queue = q2
+        self.worker_num     = i
 
     def log(self, message):
         logging.info('PARSER{}\t{}'.format(self.worker_num, message))
@@ -151,6 +181,7 @@ class ParseFile(threading.Thread):
                 self.log('Sent `DEATH`, dying gracefully.')
                 return
             self.parse_file(next_file)
+            self.deletion_queue.put(next_file)
 
     def parse_file(self, filename):
         # First let's load the parameters if they haven't loaded already
@@ -432,24 +463,16 @@ class Database(threading.Thread):
                                            'ON simulations.id = parameters.simulationid '
                                            'WHERE simulations.directory=?'), (d,))
                             info.append(c.fetchall()[0])
-                        if info[0][1] > info[1][1]:
-                            initial_profile_L1 = ParseFile.generate_initial_profile_by_cdf(info[0][1],
-                                                                                           ecdf,
-                                                                                           int(info[0][0] / 2) + 1,
-                                                                                           info[0][1]**2)
-                            initial_profile_L2 = ParseFile.generate_initial_profile_by_cdf(info[0][1] * 2,
-                                                                                           ecdf,
-                                                                                           int(info[0][0] / 2) + 1,
-                                                                                           info[0][1]**2)
-                        else:
-                            initial_profile_L1 = ParseFile.generate_initial_profile_by_cdf(info[1][1],
-                                                                                           ecdf,
-                                                                                           int(info[0][0] / 2) + 1,
-                                                                                           info[1][1]**2)
-                            initial_profile_L2 = ParseFile.generate_initial_profile_by_cdf(info[1][1] * 2,
-                                                                                           ecdf,
-                                                                                           int(info[0][0] / 2) + 1,
-                                                                                           info[1][1]**2)
+                        old_2l_zmax = max(info[0][1], info[1][1])
+                        old_run_num = max(info[0][0], info[1][0])
+                        initial_profile_L1 = ParseFile.generate_initial_profile_by_cdf(old_2l_zmax,
+                                                                                       ecdf,
+                                                                                       old_run_num + 1,
+                                                                                       info[0][1]**2)
+                        initial_profile_L2 = ParseFile.generate_initial_profile_by_cdf(old_2l_zmax * 2,
+                                                                                       ecdf,
+                                                                                       old_run_num + 2,
+                                                                                       info[0][1]**2)
                         print('~~~~~~~~~~~~~~~~~~~~~~~ROTATING~~~~~~~~~~~~~~~~~~~~~~~')
                         self.MATLAB_queue.put(('runN', (initial_profile_L1, initial_profile_L2)))
                 c.close()

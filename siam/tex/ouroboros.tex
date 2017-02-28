@@ -95,6 +95,7 @@
 \setbeamercolor{frametitle}{bg=cugold,fg=cublack}
 \setbeamercolor{item projected}{fg=cugold,bg=black}
 \setbeamercolor{itemize item}{fg=cublack,bg=black}
+\setbeamercolor{itemize subitem}{fg=cublack,bg=black}
 
 %%%%% List Styling
 \setbeamertemplate{itemize items}[circle]
@@ -152,41 +153,219 @@
 }
 
 \frame{%
+    \frametitle{Notes on Solitons}
+    Our system is governed by the Conduit Equation,
+    \begin{align*}
+        A_t + \pren{A^2}_z - \pren{A^2 \pren{A^{-1} A_t}_z}_z = 0
+    \end{align*}
+    \begin{itemize}
+        \item Solitons are \textit{solitary travelling waves}.
+        \item Solitons are a special solution to the conduit equation of the form
+            \begin{align*}
+                A(z, t) = f(\zeta) = f(z - ct)
+            \end{align*}
+        \item Solitons have Non-linear characteristics, most notably their speed
+            is determined by their non-dimensionalized amplitude ($a$).
+            \begin{align*}
+                c = \frac{a^2 - 2a^2 \ln a - 1}{2a -a^2 - 1}
+            \end{align*}
+    \end{itemize}
+}
+
+\frame{%
+    \frametitle{Conduit Soliton}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{./img/soliton.png}
+    \end{figure}
+}
+
+\frame{%
+    \frametitle{Soliton - Soliton Interactions}
+
+    \begin{itemize}
+        \item Two solitons can interact if a bigger one chases a smaller one.
+        \item The solitons' speed and amplitude are preserved save for a
+            phase-shift
+    \end{itemize}
+
+    \begin{center}
+        \includegraphics[scale=0.2]{./img/2soli1.png}\\
+        \includegraphics[scale=0.2]{./img/2soli2.png}\\
+        \includegraphics[scale=0.2]{./img/2soli3.png}
+    \end{center}
+}
+
+\frame{%
+    \frametitle{Phase Shift}
+
+    \includegraphics[scale=0.1]{./img/phaseshift.png}
+}
+
+\frame{%
     \frametitle{What's a Soliton Gas?}
 
-    Let's break it down into its components.
+    \begin{itemize}
+        \item A \textit{Soliton} is a solitary travelling wave, while a
+            \textit{Gas} can be thought of as a collection of particles
+            interacting.
+        \item In our system, our gas is one-dimensional, as we're limited to the
+            interior of the conduit.
+        \item A soliton gas has inherent random behavior dictated by two random
+            variables:
+            \begin{enumerate}
+                \item Frequency of solitons, $Z$
+                \item Soliton amplitude, $A$
+            \end{enumerate}
+        \item In a ``true'' soliton gas,
+            \begin{align*}
+                Z_g \sim Poisson(\lambda)
+            \end{align*}
+            Where $\lambda$ corresponds to the ``density'' of the gas.
+    \end{itemize}
+}
 
-    \begin{columns}[T]
-        \column{0.5\textwidth}
-        \textbf{Soliton}
-        \begin{itemize}
-            \item ``...self-reinforcing solitary wave packet\ldots (wikipedia)
-            \item More generally, a solitary travelling wave.
-        \end{itemize}
-        \column{0.5\textwidth}
-        \textbf{Gas}
-    \end{columns}
+\frame{%
+    \frametitle{How do we find a Soliton Gas?}
 
+    \begin{itemize}
+        \item Remember, true gas has $Z_g \sim Poisson(\lambda)$!
+        \item Due to the phase-shift from soliton-soliton interactions, any
+            input distribution $Z$ will converge to $Z_g$.
+        \item The Amplitude distribution $A$ is preserved over time.
+        \item Given some initial spacing distribution $Z_0$, we need to measure
+            how close it is to our ideal distribution $Z_g$.
+    \end{itemize}
 }
 
 \frame{%
     \frametitle{Numerical Simulations}
+
+    \begin{itemize}
+        \item Experiments are hard and time consuming. Much easier to just run
+            simulations.
+        \item Can simulate using adaptive step RK4 with periodic boundary
+            conditions.
+        \item In this system, with periodic boundary conditions, recurrence is
+            guaranteed.
+    \end{itemize}
+}
+
+\frame{%
+    \frametitle{Why Periodic Boundary Conditions?}
+
+    \begin{itemize}
+        \item Recurrence is guaranteed.
+        \item Therefore we'll run two simulations simultaneously, one on $[0,L]$
+            and the other on $[0,2L]$.
+        \item At each timestep we'll check ``poissonness'' of each. If they
+            differ by more than 20\%, we restart with new initial conditions.
+        \item Since we have recurrence, eventually the simulation on $[0,L]$
+            will tend back to initial conditions. We want to stop before then.
+        \item Similarly, due to phase shifts, poissonness should increase and
+            then decrease. We want to stop before this.
+    \end{itemize}
+}
+
+\frame{%
+    \frametitle{What are we calling ``Poissonness''?}
+
+    \begin{itemize}
+        \item We've established that a soliton gas should have
+            Poisson-distributed solitons.
+        \item This means that we can look at the problem as a Poisson-Point
+            Process, i.e. at any given point in space we should see points
+            appear over time.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.5]{./img/HPP.png}
+            \end{figure}
+    \end{itemize}
+}
+
+\frame{%
+    \frametitle{Meaning....}
+
+    \begin{itemize}
+        \item Since this is a Poisson-Point Process the gap between points is
+            exponentially distributed.
+        \item Therefore the ``Poissonness'' is how close our gaps of our
+            solitons are to the exponential distribution.
+        \item We use the residual sum squared on the QQ-plot as a metric of
+            ``distance'' from one distribution to the other. This is our
+            Poissonness metric.
+    \end{itemize}
+}
+
+\frame{%
+    \frametitle{Initial Conditions}
+
+    \begin{itemize}
+        \item We have two random variables to simulate.
+        \item Very first case is easy
+        \begin{itemize}
+            \item $Z$ is one soliton per ``unit''
+            \item $A$ is $Unif\pren{\cren{2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7}}$
+        \end{itemize}
+    \item After a restart on $2L$ and $4L$ things are trickier... We can't feed
+        initial conditions where solitons overlap (makes solver grumpy) so
+        instead we need to simulate initial conditions with same Poissonness as
+        last timestep (before we quit)
+    \end{itemize}
+}
+
+\frame{%
+    \frametitle{Plot of Initial Conditions}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.28]{./img/IC.png}
+    \end{figure}
 }
 
 \frame{%
     \frametitle{Leveraging Parallelism}
+
+    The big flaw so far is that we're only looking at a single run of the
+    simulation. We could easily get bad results from only a single run.
+
+    \vspace{1cm}
+    Let's instead consider running a hundred different simulations
+    simultaneously, or even a thousand. We have to adjust our simulation to be
+    able to handle running in a massively parallel environment such as the CU
+    supercomputer, Summit.
+}
+
+\frame{%
+    \frametitle{Leveraging Parallelism}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{./img/threads.png}
+    \end{figure}
 }
 
 \frame{%
     \frametitle{Preliminary Results}
+
+    \begin{figure}[H]
+        \centering
+    \end{figure}
 }
 
 \frame{%
-    \frametitle{Acknowledgements}
+    \frametitle{References and Acknowledgements}
+    \textbf{References}
+    \begin{itemize}
+        \item D. S. Agafontsev and V. E. Zakharov, Nonlinearity 28, 2791 (2015).
+    \end{itemize}
+    \textbf{Acknowledgements}
     \begin{itemize}
         \item Mark Hoefer
         \item Michelle Maiden
         \item Funded by NSF EXTREEMS-QED
     \end{itemize}
+
 }
 \end{document}
