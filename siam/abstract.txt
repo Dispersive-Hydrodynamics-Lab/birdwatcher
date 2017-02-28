@@ -1,26 +1,12 @@
-Creating a One Dimensional Gas in Viscous Fluid
+Parameterization and Analysis of Viscous Fluid Conduit Edges for Dispersive Hydrodynamics
 Will Farmer
 
-University: University of Colorado, Boulder,
+University: University of Colorado, Boulder
 
-Advisors/Collaborators: Mark Hoefer, Michelle Maiden
+Advisors/Collaborators: Mark Hoefer, Michelle Maiden, Peter Wills
 
-In the viscous fluid conduit system we can observe a variety of structures
-including solitons, dispersive shock waves, and other coherent structures. This
-system is characterized by its formation of a deformable, fluid-filled pipe that
-results from pumping a buoyant, viscous interior fluid into a dense, more
-viscous exterior fluid.  Conduits are observed experimentally as a vertical
-column where the interior fluid is dyed black for contrast with the colorless
-exterior fluid. This work will examine the possibility of a soliton gas forming
-from the regularized formation of discrete solitons.
+Solitary waves, dispersive shock waves, and other coherent structures can be observed in the viscous fluid conduit system, a deformable, fluid-filled pipe that results from pumping a buoyant, viscous interior fluid into a dense, more viscous exterior fluid.  Conduits are observed experimentally as a vertical column where the interior fluid is dyed black for contrast with the colorless exterior fluid. This work will resolve the problem of analyzing large-scale conduits that display curvature effects using a smoothing regression combined with machine learning techniques.
 
-A soliton gas in a one-dimensional system can be characterized by the fact that
-its solitons are Poisson-distributed in time, so the body of this work is to
-determine if our initial set of solitons (which are uniform in spacing with
-uniform-distributed amplitudes) eventually converge to being
-Poisson-distributed. Since we are dealing with a continuous-time system we also
-leverage the Poisson-point process model which assumes continuous-time.  This
-model's properties are instrumental in the resulting analysis.
+Initial data is acquired from micro- and macro- scale high-resolution photographs which are pipelined through an edge-detection algorithm, yielding the left and right edges of the conduit averaged to get the mean conduit value. This data can display a variety of behavior, from large-scale horizontal changes to small scale fluctuations. Noise is realized in several ways during this process, ranging from imperfections in the fluid pumping mechanism to the camera focus, and as a result a smoothing method must be applied in order to analyze the data properly. The smoothing method model uses overlapping Gaussian curves with varying heights to remove the noise fluctuations from the dataset and yields an analytic line. Then by using a nondimensionalized curvature value and the residuals from our smoothing process, we can classify the “straightness” of the conduit in question. From this point more novel machine learning classification algorithms can be utilized to determine the data quality of arbitrary points in our classification space.
 
-This initial work is done with high-performance numerical simulations, with
-planned extension to acquiring experimental data in the next few months.
+Parameterization of the Gaussian smoothing process focuses on repeatability and consistency between different datasets by finding the parameters that minimize the standard deviation of the residuals. This method is self-improving and after more data is classified by hand the results will improve. Initial data for model and process testing was acquired from past experiments pending publication.

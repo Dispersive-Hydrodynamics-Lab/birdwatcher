@@ -1,0 +1,192 @@
+\documentclass[12pt]{beamer}
+
+\input{./tex/header.tex}
+\usepackage{multimedia}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beginning of document items - headers, title, toc, etc...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Ouroboros]{Ouroboros}
+    \author{Will Farmer\\\url{www.will-farmer.com}}
+\institute{University of Colorado, Boulder\\
+            Advisors: Mark Hoefer, Michelle Maiden}
+\date{March 4, 2017}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom Beamer Theming
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetheme{Madrid}
+\makeatletter
+
+% http://tex.stackexchange.com/questions/35166/how-can-i-remove-the-institute-from-the-author-footline-on-beamer
+% TLDR; Remove the Institution from default Madrid theme by redefining footline
+% template.
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}{\color{cugold}\insertshortauthor}%~~\beamer@ifempty{\insertshortinstitute}{}{(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+% Redefine title page to be a little more square/2d
+\setbeamertemplate{title page}
+{
+  \begin{centering}
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[sep=8pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}%\vskip0.5em
+    \begin{beamercolorbox}[sep=8pt,center]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+  \end{centering}
+  %\vfill
+}
+\makeatother
+
+\usecolortheme{wolverine}
+
+%%%%% SET THEME
+\beamertemplatenavigationsymbolsempty   % Disable navigation
+
+%%%%% INSERT LOGO
+\logo{%
+    \vspace{-0.3cm}
+    \makebox[0.95\paperwidth]{%
+        \includegraphics[scale=0.4]{./img/nsf.png}{\color{cublack}Funded by NSF EXTREEMS-QED}
+        \hfill%
+        \color{cugold}CU Boulder Applied Math\includegraphics[height=0.8cm]{./img/appm.png}
+    }%
+}
+
+%%%%% DEFINE COLORS
+\definecolor{bgcolor}{RGB}{255,255,240}
+\definecolor{cugold}{RGB}{207,184,124}
+\definecolor{cublack}{RGB}{0,0,0}
+\definecolor{cudarkgray}{RGB}{86,90,92}
+\definecolor{culightgray}{RGB}{162,164,163}
+
+%%%%% SET COLORS
+\setbeamercolor{palette primary}{bg=cugold,fg=cublack}
+\setbeamercolor{palette secondary}{bg=culightgray}
+\setbeamercolor{palette tertiary}{bg=cublack}
+\setbeamercolor{frametitle}{bg=cugold,fg=cublack}
+\setbeamercolor{item projected}{fg=cugold,bg=black}
+\setbeamercolor{itemize item}{fg=cublack,bg=black}
+
+%%%%% List Styling
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\frame{\titlepage}
+
+\logo{%
+    \vspace{-0.3cm}\color{cugold}CU Boulder Applied Math
+    \includegraphics[height=0.8cm]{./img/appm.png}
+}
+
+\frame{%
+    \frametitle{High Level Overview}
+
+    \textbf{Can we make a soliton gas?}
+    \begin{itemize}
+        \item One-Dimensional Fluid System
+        \item Solitons (and other discrete structures) possible
+        \item Need to use some statistics...
+    \end{itemize}
+}
+
+\frame{%
+    \frametitle{What's our Environment?}
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \textbf{Viscous Fluid Conduits}
+        \begin{itemize}
+            \item Two viscous fluids, with inner forming axisymmetric conduit.
+            \item Exterior Fluid: $\rho^{(e)}$ density and $\mu^{(e)}$ viscosity
+            \item Interior Fluid: $\rho^{(i)}$ density and $\mu^{(i)}$ viscosity
+            \item $\rho^{(i)} < \rho^{(e)} \Rightarrow$ buoyant flow
+            \item $\mu^{(i)} << \mu^{(e)} \Rightarrow$ minimal drag
+            \item $\text{Re} << 1 \Rightarrow$ low Reynold's number
+        \end{itemize}
+        \column{0.5\textwidth}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.15]{./img/conduit.png}
+        \end{figure}
+    \end{columns}
+}
+
+\frame{%
+    \frametitle{Experimental Setup}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.13]{./img/setup.png}
+    \end{figure}
+}
+
+\frame{%
+    \frametitle{What's a Soliton Gas?}
+
+    Let's break it down into its components.
+
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \textbf{Soliton}
+        \begin{itemize}
+            \item ``...self-reinforcing solitary wave packet\ldots (wikipedia)
+            \item More generally, a solitary travelling wave.
+        \end{itemize}
+        \column{0.5\textwidth}
+        \textbf{Gas}
+    \end{columns}
+
+}
+
+\frame{%
+    \frametitle{Numerical Simulations}
+}
+
+\frame{%
+    \frametitle{Leveraging Parallelism}
+}
+
+\frame{%
+    \frametitle{Preliminary Results}
+}
+
+\frame{%
+    \frametitle{Acknowledgements}
+    \begin{itemize}
+        \item Mark Hoefer
+        \item Michelle Maiden
+        \item Funded by NSF EXTREEMS-QED
+    \end{itemize}
+}
+\end{document}

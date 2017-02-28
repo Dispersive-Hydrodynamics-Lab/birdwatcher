@@ -1,43 +1,60 @@
-2017-02-27 13:31:41,258 	 ~~~STARTING~~~
-2017-02-27 13:31:41,258 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=4)
-2017-02-27 13:31:41,419 	 DATABASE	Tables Created
-2017-02-27 13:31:54,856 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
-2017-02-27 13:31:54,882 	 PARSER0	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
-2017-02-27 13:31:57,268 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
-2017-02-27 13:31:57,269 	 PARSER1	Received ./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
-2017-02-27 13:32:07,796 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
-2017-02-27 13:32:07,797 	 PARSER2	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
-2017-02-27 13:32:20,593 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
-2017-02-27 13:32:20,594 	 PARSER3	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
-2017-02-27 13:32:25,167 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
-2017-02-27 13:32:25,169 	 PARSER0	Received ./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
-2017-02-27 13:32:33,919 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
-2017-02-27 13:32:33,920 	 PARSER2	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
-2017-02-27 13:32:46,584 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat created. Adding to Queue
-2017-02-27 13:32:46,586 	 PARSER3	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
-2017-02-27 13:32:52,328 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
-2017-02-27 13:32:52,328 	 PARSER1	Received ./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
-2017-02-27 13:32:58,966 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat created. Adding to Queue
-2017-02-27 13:32:58,967 	 PARSER2	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
-2017-02-27 13:33:11,770 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat created. Adding to Queue
-2017-02-27 13:33:11,771 	 PARSER3	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat
-2017-02-27 13:33:17,680 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
-2017-02-27 13:33:17,681 	 PARSER2	Received ./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
-2017-02-27 13:33:27,038 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat created. Adding to Queue
-2017-02-27 13:33:27,041 	 PARSER0	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat
-2017-02-27 13:33:40,474 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat created. Adding to Queue
-2017-02-27 13:33:40,479 	 PARSER3	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat
-2017-02-27 13:33:47,215 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat created. Adding to Queue
-2017-02-27 13:33:47,218 	 PARSER0	Received ./data/conduit_eqtn_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
-2017-02-27 13:33:55,722 	 HANDLER	./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00010.mat created. Adding to Queue
-2017-02-27 13:33:55,723 	 PARSER1	Received ./data/conduit_eqtn_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00010.mat
-2017-02-27 13:33:59,100 	 ~~~CLOSING~~~
-2017-02-27 13:33:59,103 	 PARSER3	Received POISON PILL
-2017-02-27 13:33:59,104 	 DATABASE	Dying happily
-2017-02-27 13:33:59,105 	 PARSER3	Sent `DEATH`, dying gracefully.
-2017-02-27 13:34:06,036 	 PARSER1	Received POISON PILL
-2017-02-27 13:34:06,036 	 PARSER1	Sent `DEATH`, dying gracefully.
-2017-02-27 13:34:10,051 	 PARSER2	Received POISON PILL
-2017-02-27 13:34:10,052 	 PARSER2	Sent `DEATH`, dying gracefully.
-2017-02-27 13:34:17,401 	 PARSER0	Received POISON PILL
-2017-02-27 13:34:17,401 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-28 07:48:33,471 	 ~~~STARTING~~~
+2017-02-28 07:48:33,472 	 Namespace(database='ouroboros.db', directory='.', num_simulations=2, num_workers=8, testing=False)
+2017-02-28 07:48:33,541 	 DATABASE	Tables Created
+2017-02-28 07:48:46,434 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-02-28 07:48:46,449 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-02-28 07:48:47,497 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-02-28 07:48:47,498 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-02-28 07:48:57,066 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-02-28 07:48:57,068 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-02-28 07:49:07,656 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-02-28 07:49:07,658 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-02-28 07:49:12,490 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-02-28 07:49:12,491 	 PARSER4	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-02-28 07:49:18,310 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
+2017-02-28 07:49:18,311 	 PARSER5	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-02-28 07:49:28,438 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat created. Adding to Queue
+2017-02-28 07:49:28,441 	 PARSER6	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
+2017-02-28 07:49:35,072 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-02-28 07:49:35,074 	 PARSER7	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-02-28 07:49:40,004 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat created. Adding to Queue
+2017-02-28 07:49:40,005 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
+2017-02-28 07:49:50,171 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat created. Adding to Queue
+2017-02-28 07:49:50,172 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat
+2017-02-28 07:49:58,925 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
+2017-02-28 07:49:58,926 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-02-28 07:50:00,849 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat created. Adding to Queue
+2017-02-28 07:50:00,852 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat
+2017-02-28 07:50:12,408 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat created. Adding to Queue
+2017-02-28 07:50:12,409 	 PARSER5	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat
+2017-02-28 07:50:22,166 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat created. Adding to Queue
+2017-02-28 07:50:22,177 	 PARSER6	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
+2017-02-28 07:50:23,648 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00010.mat created. Adding to Queue
+2017-02-28 07:50:23,649 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00010.mat
+2017-02-28 07:50:34,567 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00011.mat created. Adding to Queue
+2017-02-28 07:50:34,569 	 PARSER4	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00011.mat
+2017-02-28 07:50:45,644 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00012.mat created. Adding to Queue
+2017-02-28 07:50:45,645 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00012.mat
+2017-02-28 07:50:46,717 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat created. Adding to Queue
+2017-02-28 07:50:46,718 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
+2017-02-28 07:50:56,555 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00013.mat created. Adding to Queue
+2017-02-28 07:50:56,557 	 PARSER5	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00013.mat
+2017-02-28 07:51:08,326 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00014.mat created. Adding to Queue
+2017-02-28 07:51:08,327 	 PARSER7	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00014.mat
+2017-02-28 07:51:11,022 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat created. Adding to Queue
+2017-02-28 07:51:11,023 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat
+2017-02-28 07:51:19,238 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00015.mat created. Adding to Queue
+2017-02-28 07:51:19,240 	 PARSER4	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00015.mat
+2017-02-28 07:51:31,251 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00016.mat created. Adding to Queue
+2017-02-28 07:51:31,254 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00016.mat
+2017-02-28 07:51:34,967 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat created. Adding to Queue
+2017-02-28 07:51:34,970 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat
+2017-02-28 07:51:43,055 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00017.mat created. Adding to Queue
+2017-02-28 07:51:43,056 	 PARSER5	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00017.mat
+2017-02-28 07:51:54,082 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00018.mat created. Adding to Queue
+2017-02-28 07:51:54,085 	 PARSER7	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00018.mat
+2017-02-28 07:52:29,653 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_1000000_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_2_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-02-28 07:52:29,660 	 PARSER6	Received ./data/conduit_eqtn_wnum_0_tmax_1000000_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_2_bndry_condns_periodic/00001.mat
+2017-02-28 07:52:33,181 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_1000000_zmax_2000_Nz_200000_order_4_init_condns_soligas_iter_2_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-02-28 07:52:33,182 	 PARSER4	Received ./data/conduit_eqtn_wnum_0_tmax_1000000_zmax_2000_Nz_200000_order_4_init_condns_soligas_iter_2_bndry_condns_periodic/00001.mat
+2017-02-28 07:52:50,166 	 ~~~CLOSING~~~

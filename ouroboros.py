@@ -34,13 +34,16 @@ from typing import Optional, Dict, List, Any
 
 
 DEATH = 'POISON PILL'
-DIRSTR = ('conduit_eqtn_tmax_{}_zmax_{}'
+DIRSTR = ('conduit_eqtn_wnum_{}_tmax_{}_zmax_{}'
           '_Nz_{}_order_4_init_condns_soligas_'
           'iter_{}_bndry_condns_periodic')
 
 
 def main():
     args = get_args()
+
+    if args.testing:
+        return
 
     logging.getLogger('ouroboros')
     logging.basicConfig(filename='ouroboros.log',
@@ -197,8 +200,9 @@ class ParseFile(threading.Thread):
     def generate_initial_profile_by_cdf(domain_size: int, cdf, iter_num: int, tmax: int):
         H = 0.01  # Precision of domain
         domain = np.arange(0, domain_size, H)
-        soliton_heights = ParseFile.get_heights(number_of_solitons)
         soliton_positions = ParseFile.sim_exponential(cdf, domain_size)
+        number_of_solitons = len(soliton_positions)
+        soliton_heights = ParseFile.get_heights(number_of_solitons)
         profile = np.ones(len(domain))
         for position, height in zip(soliton_positions, soliton_heights):
             soliton = ParseFile.get_soliton(domain, height, position)
@@ -211,6 +215,7 @@ class ParseFile(threading.Thread):
             'zmax': domain_size,
             'iter': iter_num,
             'tmax': tmax,
+            'wnum': 0,   # TODO
             'Nz': int(domain_size / H)
         }
         return output
@@ -222,8 +227,10 @@ class ParseFile(threading.Thread):
         cursor = 25
         spots = []
         while cursor < domain_size - 25:
-            cursor += domain[cdf_vals == random.random()]
-            spots.append(cursor)
+            new_val = domain[cdf_vals <= random.random()][-1]
+            if new_val > 10:
+                cursor += new_val
+                spots.append(cursor)
         return spots
 
     @staticmethod
@@ -247,6 +254,7 @@ class ParseFile(threading.Thread):
             'zmax': domain_size,
             'iter': iter_num,
             'tmax': tmax,
+            'wnum': 0,   # TODO
             'Nz': int(domain_size / H)
         }
         return output
@@ -412,24 +420,36 @@ class Database(threading.Thread):
                             dirs[d] = c.fetchall()[0]
                     # Now we can compare
                     pvals = [p for _, (_, p) in dirs.items()]
-                    if np.abs(pvals[0] - pvals[1]) / pvals[1] > 0.2:
+                    if np.abs((pvals[0] / pvals[1]) - 1) > 0.2:
                         # Stop
-                        self.MATLAB_queue.put(('KILL BY DIR', list(d.keys())[0]))
+                        self.MATLAB_queue.put(('KILL BY DIR', list(dirs.keys())[0]))
                         # and restart
                         info = []
                         for d in dirs:
-                            c.execute(('SELECT sims.id, params.zmax '
-                                           'FROM simulations AS sims '
-                                           'INNER JOIN parameters AS params '
-                                           'ON sims.id = params.simulationid'
-                                           'WHERE sims.directory=?'), (d,))
+                            c.execute(('SELECT simulations.id, parameters.zmax '
+                                           'FROM simulations '
+                                           'INNER JOIN parameters '
+                                           'ON simulations.id = parameters.simulationid '
+                                           'WHERE simulations.directory=?'), (d,))
                             info.append(c.fetchall()[0])
                         if info[0][1] > info[1][1]:
-                            initial_profile_L1 = ParseFile.generate_initial_profile(info[0][1], cdf, int(info[0][0] / 2))
-                            initial_profile_L2 = ParseFile.generate_initial_profile(info[0][1] * 2, cdf, int(info[0][0] / 2))
+                            initial_profile_L1 = ParseFile.generate_initial_profile_by_cdf(info[0][1],
+                                                                                           ecdf,
+                                                                                           int(info[0][0] / 2) + 1,
+                                                                                           info[0][1]**2)
+                            initial_profile_L2 = ParseFile.generate_initial_profile_by_cdf(info[0][1] * 2,
+                                                                                           ecdf,
+                                                                                           int(info[0][0] / 2) + 1,
+                                                                                           info[0][1]**2)
                         else:
-                            initial_profile_L1 = ParseFile.generate_initial_profile(info[1][1], cdf, int(info[0][0] / 2))
-                            initial_profile_L2 = ParseFile.generate_initial_profile(info[1][1] * 2, cdf, int(info[0][0] / 2))
+                            initial_profile_L1 = ParseFile.generate_initial_profile_by_cdf(info[1][1],
+                                                                                           ecdf,
+                                                                                           int(info[0][0] / 2) + 1,
+                                                                                           info[1][1]**2)
+                            initial_profile_L2 = ParseFile.generate_initial_profile_by_cdf(info[1][1] * 2,
+                                                                                           ecdf,
+                                                                                           int(info[0][0] / 2) + 1,
+                                                                                           info[1][1]**2)
                         print('~~~~~~~~~~~~~~~~~~~~~~~ROTATING~~~~~~~~~~~~~~~~~~~~~~~')
                         self.MATLAB_queue.put(('runN', (initial_profile_L1, initial_profile_L2)))
                 c.close()
@@ -466,7 +486,7 @@ class RunSimulation(threading.Thread):
                     q.put(DEATH)
             elif message[0] == 'KILL BY DIR':
                 dirname = message[1]
-                for runname, jobs in self.jobs:
+                for runname, jobs in self.jobs.items():
                     if dirname in list(jobs.keys()):
                         run_name = runname
                         break
@@ -479,12 +499,14 @@ class RunSimulation(threading.Thread):
                     message_queue = queue.Queue()
                     j = MATLABScript(message_queue,
                                      (float(profile['iter']),
+                                      float(profile['wnum']),
                                       float(profile['zmax']),
                                       float(profile['tmax']),
                                       matlab.double(profile['domain'].tolist()),
                                       matlab.double(profile['area'].tolist())))
                     j.start()
                     jobname = DIRSTR.format(
+                            profile['wnum'],
                             profile['tmax'],
                             profile['zmax'],
                             profile['Nz'],
@@ -516,12 +538,14 @@ def get_args():
     parser.add_argument('directory', metavar='d', type=str, nargs='*',
                         default='.',
                         help='Directory to watch for simulation data (recursive)')
-    parser.add_argument('-n', '--num-workers', type=int, default=4,
+    parser.add_argument('-n', '--num-workers', type=int, default=8,
                         help='Number of parse workers to use.')
     parser.add_argument('-s', '--num-simulations', type=int, default=2,
                         help='How many MATLAB sims to run')
     parser.add_argument('-db', '--database', type=str, default='ouroboros.db',
                         help='Database file to use.')
+    parser.add_argument('-t', '--testing', action='store_true', default=False,
+                        help='Run in test mode (i.e. immediately exit)')
     args = parser.parse_args()
     if isinstance(args.directory, list):
         args.directory = args.directory[0]
