@@ -12,6 +12,7 @@ import logging
 import requests
 import sqlite3 as sq
 from tqdm import tqdm
+from functools import reduce
 
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -435,7 +436,14 @@ class Database(threading.Thread):
                           (sim_id, float(tnow), poissonness))
                 conn.commit()
                 # Now see how we are next to goal
-                if float(tnow) > GOAL:
+                c.execute(
+                    'SELECT MAX(t), simulationid '
+                    'FROM poissonness '
+                    'GROUP BY simulationid '
+                    'ORDER BY simulationid DESC '
+                    'LIMIT (SELECT COUNT(DISTINCT wnum) FROM simulations) * 2'
+                )
+                if reduce(lambda acc, n: acc and (n > GOAL), [_[0] for _ in c.fetchall()], True):
                     self.done_queue.put(DEATH)
                     c.close()
                     conn.close()
