@@ -123,3 +123,92 @@
 2017-02-28 13:35:16,199 	 PARSER20	Received ./data/conduit_eqtn_wnum_1_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat
 2017-02-28 13:35:21,787 	 PARSER21	Received ./data/conduit_eqtn_wnum_3_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
 2017-02-28 13:35:24,968 	 PARSER22	Received ./data/conduit_eqtn_wnum_2_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-02-28 13:35:30,102 	 PARSER24	Received ./data/conduit_eqtn_wnum_2_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat
+2017-02-28 13:35:30,245 	 PARSER26	Received ./data/conduit_eqtn_wnum_1_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
+2017-02-28 13:35:38,498 	 PARSER27	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00011.mat
+2017-02-28 13:35:41,122 	 PARSER29	Received ./data/conduit_eqtn_wnum_1_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00010.mat
+2017-02-28 13:35:43,262 	 PARSER30	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
+2017-02-28 13:35:48,426 	 PARSER31	Received ./data/conduit_eqtn_wnum_3_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat
+2017-02-28 13:35:51,207 	 PARSER0	Received ./data/conduit_eqtn_wnum_2_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat
+2017-02-28 13:35:59,414 	 PARSER5	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00012.mat
+2017-02-28 13:36:12,349 	 PARSER6	Received ./data/conduit_eqtn_wnum_1_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00011.mat
+2017-02-28 13:36:21,636 	 PARSER9	Received ./data/conduit_eqtn_wnum_3_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-02-28 13:36:25,710 	 PARSER11	Received ./data/conduit_eqtn_wnum_2_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
+2017-02-28 13:36:44,463 	 PARSER1	Received ./data/conduit_eqtn_wnum_3_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat
+2017-02-28 13:36:45,033 	 PARSER14	Received ./data/conduit_eqtn_wnum_2_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00010.mat
+2017-02-28 13:36:48,364 	 PARSER15	Received ./data/conduit_eqtn_wnum_1_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
+2017-02-28 13:36:50,367 	 PARSER16	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00013.mat
+2017-02-28 13:36:57,573 	 PARSER20	Received ./data/conduit_eqtn_wnum_1_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00012.mat
+2017-02-28 13:37:03,692 	 PARSER21	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat
+2017-02-28 13:37:09,642 	 PARSER24	Received ./data/conduit_eqtn_wnum_3_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat
+2017-02-28 13:37:16,381 	 PARSER27	Received ./data/conduit_eqtn_wnum_2_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00011.mat
+2017-02-28 13:37:16,791 	 PARSER29	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00014.mat
+2017-02-28 13:37:20,773 	 PARSER4	Received ./data/conduit_eqtn_wnum_1_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00013.mat
+2017-02-28 13:37:27,641 	 PARSER0	Received ./data/conduit_eqtn_wnum_3_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
+2017-02-28 13:37:27,855 	 PARSER31	Received ./data/conduit_eqtn_wnum_2_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
+2017-02-28 13:37:36,744 	 PARSER5	Received ./data/conduit_eqtn_wnum_3_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00010.mat
+2017-02-28 13:37:47,329 	 PARSER6	Received ./data/conduit_eqtn_wnum_2_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00012.mat
+2017-02-28 13:37:48,257 	 PARSER7	Received POISON PILL
+2017-02-28 13:37:48,258 	 PARSER7	Sent `DEATH`, dying gracefully.
+2017-02-28 13:37:56,861 	 PARSER10	Received POISON PILL
+2017-02-28 13:37:56,862 	 PARSER10	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:09,066 	 PARSER13	Received POISON PILL
+2017-02-28 13:38:09,068 	 PARSER13	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:12,398 	 PARSER1	Received POISON PILL
+2017-02-28 13:38:12,399 	 PARSER1	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:12,944 	 PARSER14	Received POISON PILL
+2017-02-28 13:38:12,945 	 PARSER14	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:14,773 	 PARSER16	Received POISON PILL
+2017-02-28 13:38:14,773 	 PARSER16	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:16,491 	 PARSER17	Received POISON PILL
+2017-02-28 13:38:16,494 	 PARSER17	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:21,278 	 PARSER19	Received POISON PILL
+2017-02-28 13:38:21,279 	 PARSER19	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:21,586 	 PARSER20	Received POISON PILL
+2017-02-28 13:38:21,587 	 PARSER20	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:29,463 	 PARSER24	Received POISON PILL
+2017-02-28 13:38:29,464 	 PARSER24	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:29,879 	 PARSER23	Received POISON PILL
+2017-02-28 13:38:29,880 	 PARSER23	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:34,541 	 PARSER25	Received POISON PILL
+2017-02-28 13:38:34,542 	 PARSER25	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:34,949 	 PARSER27	Received POISON PILL
+2017-02-28 13:38:34,950 	 PARSER27	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:35,147 	 PARSER29	Received POISON PILL
+2017-02-28 13:38:35,148 	 PARSER29	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:38,436 	 PARSER4	Received POISON PILL
+2017-02-28 13:38:38,438 	 PARSER4	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:41,398 	 PARSER28	Received POISON PILL
+2017-02-28 13:38:41,399 	 PARSER28	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:44,771 	 PARSER2	Received POISON PILL
+2017-02-28 13:38:44,773 	 PARSER2	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:46,470 	 PARSER3	Received POISON PILL
+2017-02-28 13:38:46,473 	 PARSER3	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:46,984 	 PARSER5	Received POISON PILL
+2017-02-28 13:38:46,985 	 PARSER5	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:51,453 	 PARSER6	Received POISON PILL
+2017-02-28 13:38:51,454 	 PARSER6	Sent `DEATH`, dying gracefully.
+2017-02-28 13:38:55,279 	 PARSER8	Received POISON PILL
+2017-02-28 13:38:55,283 	 PARSER8	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:06,367 	 PARSER12	Received POISON PILL
+2017-02-28 13:39:06,369 	 PARSER12	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:11,783 	 PARSER18	Received POISON PILL
+2017-02-28 13:39:11,786 	 PARSER18	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:15,537 	 PARSER22	Received POISON PILL
+2017-02-28 13:39:15,538 	 PARSER22	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:16,678 	 PARSER26	Received POISON PILL
+2017-02-28 13:39:16,678 	 PARSER26	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:19,666 	 PARSER30	Received POISON PILL
+2017-02-28 13:39:19,666 	 PARSER30	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:25,721 	 PARSER9	Received POISON PILL
+2017-02-28 13:39:25,721 	 PARSER9	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:27,739 	 PARSER11	Received POISON PILL
+2017-02-28 13:39:27,741 	 PARSER11	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:31,174 	 PARSER15	Received POISON PILL
+2017-02-28 13:39:31,174 	 PARSER15	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:31,975 	 PARSER21	Received POISON PILL
+2017-02-28 13:39:31,975 	 PARSER21	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:33,535 	 PARSER0	Received POISON PILL
+2017-02-28 13:39:33,535 	 PARSER0	Sent `DEATH`, dying gracefully.
+2017-02-28 13:39:33,728 	 PARSER31	Received POISON PILL
+2017-02-28 13:39:33,728 	 PARSER31	Sent `DEATH`, dying gracefully.

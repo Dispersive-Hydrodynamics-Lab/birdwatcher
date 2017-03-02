@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Beginning of document items - headers, title, toc, etc...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[Ouroboros]{Ouroboros}
+\title[Ouroboros]{Creating a One Dimensional\\Soliton Gas in Viscous Fluid}
     \author{Will Farmer\\\url{www.will-farmer.com}}
 \institute{University of Colorado, Boulder\\
             Advisors: Mark Hoefer, Michelle Maiden}
@@ -73,7 +73,7 @@
 
 %%%%% INSERT LOGO
 \logo{%
-    \vspace{-0.3cm}
+    \vspace{-0.29cm}
     \makebox[0.95\paperwidth]{%
         \includegraphics[scale=0.4]{./img/nsf.png}{\color{cublack}Funded by NSF EXTREEMS-QED}
         \hfill%
@@ -96,6 +96,7 @@
 \setbeamercolor{item projected}{fg=cugold,bg=black}
 \setbeamercolor{itemize item}{fg=cublack,bg=black}
 \setbeamercolor{itemize subitem}{fg=cublack,bg=black}
+\setbeamercolor{itemize subsubitem}{fg=cublack,bg=black}
 
 %%%%% List Styling
 \setbeamertemplate{itemize items}[circle]
@@ -115,12 +116,16 @@
 \frame{%
     \frametitle{High Level Overview}
 
-    \textbf{Can we make a soliton gas?}
-    \begin{itemize}
-        \item One-Dimensional Fluid System
-        \item Solitons (and other discrete structures) possible
-        \item Need to use some statistics...
-    \end{itemize}
+    \begin{enumerate}
+        \item Conduit environment and equations that govern.
+        \item Solitons, their properties, how they interact.
+        \item Definition of soliton gas, its properties.
+        \item Testing through simulations.
+        \item Recurrence implications.
+        \item Measuring a ``gas metric''.
+        \item Running in parallel.
+        \item Initial results.
+    \end{enumerate}
 }
 
 \frame{%
@@ -134,7 +139,8 @@
             \item Interior Fluid: $\rho^{(i)}$ density and $\mu^{(i)}$ viscosity
             \item $\rho^{(i)} < \rho^{(e)} \Rightarrow$ buoyant flow
             \item $\mu^{(i)} << \mu^{(e)} \Rightarrow$ minimal drag
-            \item $\text{Re} << 1 \Rightarrow$ low Reynold's number
+            \item $\text{Re} << 1 \Rightarrow$ low Reynold's number (implies
+                Laminar flow)
         \end{itemize}
         \column{0.5\textwidth}
         \begin{figure}[H]
@@ -145,14 +151,6 @@
 }
 
 \frame{%
-    \frametitle{Experimental Setup}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.13]{./img/setup.png}
-    \end{figure}
-}
-
-\frame{%
     \frametitle{Notes on Solitons}
     Our system is governed by the Conduit Equation,
     \begin{align*}
@@ -160,11 +158,12 @@
     \end{align*}
     \begin{itemize}
         \item Solitons are \textit{solitary travelling waves}.
-        \item Solitons are a special solution to the conduit equation of the form
+        \item Solitons are a special solution with decaying boundary conditions
+            to the conduit equation of the form
             \begin{align*}
                 A(z, t) = f(\zeta) = f(z - ct)
             \end{align*}
-        \item Solitons have Non-linear characteristics, most notably their speed
+        \item Solitons have nonlinear characteristics, most notably their speed
             is determined by their non-dimensionalized amplitude ($a$).
             \begin{align*}
                 c = \frac{a^2 - 2a^2 \ln a - 1}{2a -a^2 - 1}
@@ -200,42 +199,59 @@
 \frame{%
     \frametitle{Phase Shift}
 
-    \includegraphics[scale=0.1]{./img/phaseshift.png}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.37]{./img/soli2.png}
+    \end{figure}
 }
 
 \frame{%
     \frametitle{What's a Soliton Gas?}
 
     \begin{itemize}
-        \item A \textit{Soliton} is a solitary travelling wave, while a
-            \textit{Gas} can be thought of as a collection of particles
-            interacting.
-        \item In our system, our gas is one-dimensional, as we're limited to the
-            interior of the conduit.
+        \item A soliton can be thought of as a wave, but also as a particle
+            (similar to a photon)
+        \item A gas can be thought of as a random collection of particles
+            interacting
+        \item Thus a soliton gas is a random collection of solitons interacting
+        \item Our system is one-dimensional, so we are generating a 1D gas
         \item A soliton gas has inherent random behavior dictated by two random
             variables:
             \begin{enumerate}
                 \item Frequency of solitons, $Z$
                 \item Soliton amplitude, $A$
             \end{enumerate}
-        \item In a ``true'' soliton gas,
-            \begin{align*}
-                Z_g \sim Poisson(\lambda)
-            \end{align*}
-            Where $\lambda$ corresponds to the ``density'' of the gas.
     \end{itemize}
 }
 
 \frame{%
-    \frametitle{How do we find a Soliton Gas?}
+    \frametitle{Plotting our Gas}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.37]{./img/soligas.png}
+    \end{figure}
+}
+
+\frame{%
+    \frametitle{Properties of a Soliton Gas}
 
     \begin{itemize}
-        \item Remember, true gas has $Z_g \sim Poisson(\lambda)$!
-        \item Due to the phase-shift from soliton-soliton interactions, any
-            input distribution $Z$ will converge to $Z_g$.
-        \item The Amplitude distribution $A$ is preserved over time.
-        \item Given some initial spacing distribution $Z_0$, we need to measure
-            how close it is to our ideal distribution $Z_g$.
+        \item Soliton gas theory has been developed for simpler (integrable)
+            systems such as the Korteweg-de Vries equation (KDV)
+            \begin{align*}
+                \phi_t + \phi_{xxx} - 6 \phi \phi_x = 0
+            \end{align*}
+        \item Two main results
+            \begin{itemize}
+                \item There exists a compound Poisson process for the soliton centers and amplitudes
+                    \begin{itemize}
+                        \item This means over long time, $Z \sim
+                            Poisson(\lambda)$, and A is preserved
+                    \end{itemize}
+                \item A soliton passing through the gas has a correction to its
+                    speed that depends on the amplitude distribution of the gas
+            \end{itemize}
     \end{itemize}
 }
 
@@ -243,33 +259,33 @@
     \frametitle{Numerical Simulations}
 
     \begin{itemize}
-        \item Experiments are hard and time consuming. Much easier to just run
-            simulations.
-        \item Can simulate using adaptive step RK4 with periodic boundary
-            conditions.
-        \item In this system, with periodic boundary conditions, recurrence is
-            guaranteed.
+        \item Before running time-consuming experiments, useful to run numerical
+            simulations
+        \item Spatial discretization: 4th-order finite differences with periodic
+            BC's
+        \item Temporal discretization: medium-order adaptive Runge-Kutta
+            (\textsc{Matlab}'s ode45.m)
     \end{itemize}
 }
 
 \frame{%
-    \frametitle{Why Periodic Boundary Conditions?}
+    \frametitle{Recurrence}
 
     \begin{itemize}
-        \item Recurrence is guaranteed.
-        \item Therefore we'll run two simulations simultaneously, one on $[0,L]$
-            and the other on $[0,2L]$.
-        \item At each timestep we'll check ``poissonness'' of each. If they
-            differ by more than 20\%, we restart with new initial conditions.
         \item Since we have recurrence, eventually the simulation on $[0,L]$
             will tend back to initial conditions. We want to stop before then.
-        \item Similarly, due to phase shifts, poissonness should increase and
+        \item Therefore we'll run two simulations simultaneously, one on $[0,L]$
+            and the other on $[0,2L]$.
+        \item At each timestep we'll check for a compound Poisson gas process
+            (``gas metric'') of each. If they differ by more than 20\%, we
+            restart with new initial conditions.
+        \item Similarly, due to phase shifts, our gas metric should increase and
             then decrease. We want to stop before this.
     \end{itemize}
 }
 
 \frame{%
-    \frametitle{What are we calling ``Poissonness''?}
+    \frametitle{What is our Gas Metric?}
 
     \begin{itemize}
         \item We've established that a soliton gas should have
@@ -290,11 +306,12 @@
     \begin{itemize}
         \item Since this is a Poisson-Point Process the gap between points is
             exponentially distributed.
-        \item Therefore the ``Poissonness'' is how close our gaps of our
+        \item Therefore the gas metric is a measure of how close our gaps of our
             solitons are to the exponential distribution.
         \item We use the residual sum squared on the QQ-plot as a metric of
-            ``distance'' from one distribution to the other. This is our
-            Poissonness metric.
+            ``distance'' from one distribution to the other. This value is our
+            gas metric.
+        \item We find this gas metric at every timestep.
     \end{itemize}
 }
 
@@ -305,13 +322,14 @@
         \item We have two random variables to simulate.
         \item Very first case is easy
         \begin{itemize}
-            \item $Z$ is one soliton per ``unit''
-            \item $A$ is $Unif\pren{\cren{2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7}}$
+            \item $Z$ is one per minimum distance with exponentially small
+                overlap.
+            \item $A$ is $Unif\pren{\cren{2,2.5,3,3.5,4,4.5,5,5.5,6}}$
         \end{itemize}
     \item After a restart on $2L$ and $4L$ things are trickier... We can't feed
-        initial conditions where solitons overlap (makes solver grumpy) so
-        instead we need to simulate initial conditions with same Poissonness as
-        last timestep (before we quit)
+        initial conditions where solitons overlap (makes solver grumpy due to
+        nonlinear phenomena) so instead we need to simulate initial conditions
+        with same gas metric as last timestep before we quit.
     \end{itemize}
 }
 
@@ -320,7 +338,7 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.28]{./img/IC.png}
+        \includegraphics[scale=0.5]{./img/IC.png}
     \end{figure}
 }
 
@@ -340,6 +358,20 @@
 \frame{%
     \frametitle{Leveraging Parallelism}
 
+    \begin{itemize}
+        \item If we want to run many simulations at once, this problem can be
+            described as \textit{embarrassingly parallel} since the simulations
+            don't need to talk to each other.
+        \item So how can we design a multi-threaded program to take into account
+            the availability of tens or hundreds of threads?
+        \item Can this be written \textit{safely} so we don't have any undefined
+            behavior?
+    \end{itemize}
+}
+
+\frame{%
+    \frametitle{Multi-Threaded Design}
+
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{./img/threads.png}
@@ -351,13 +383,30 @@
 
     \begin{figure}[H]
         \centering
+        \includegraphics[scale=0.38]{./img/results.png}
     \end{figure}
+}
+
+\frame{%
+    \frametitle{Next Steps}
+    \begin{itemize}
+        \item Large scale supercomputer simulations
+        \item Experiments for validation of simulations
+        \item Research paper
+    \end{itemize}
 }
 
 \frame{%
     \frametitle{References and Acknowledgements}
     \textbf{References}
     \begin{itemize}
+        \item M. D. Maiden, N. K. Lowman, D. V. Anderson, M. E. Schubert, and M.
+            A. Hoefer, Observation of dispersive shock waves, solitons, and
+            their interactions in viscous fluid conduits, Physical Review
+            Letters 116, 174501 (2016).
+        \item N. K. Lowman, M. A. Hoefer, and G. A. El, Interactions of large
+            amplitude solitary waves in viscous fluid conduits, Journal of Fluid
+            Mechanics 750, 372-384 (2014).
         \item D. S. Agafontsev and V. E. Zakharov, Nonlinearity 28, 2791 (2015).
     \end{itemize}
     \textbf{Acknowledgements}

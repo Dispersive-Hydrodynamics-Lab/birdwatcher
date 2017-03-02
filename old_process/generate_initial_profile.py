@@ -44,10 +44,10 @@ def create_solitons(filename: str) -> None:
         print('\tSoliton @ {:0.01f} with h={:0.01f}'.format(position, height))
         soliton = get_soliton(domain, height, position)
         profile += soliton
-    domain = np.arange(0, 1000, H)
-    new_profile = np.ones(len(domain))
-    new_profile[1000:len(profile) + 1000] = profile
-    profile = new_profile
+    # domain = np.arange(0, 1000, H)
+    # new_profile = np.ones(len(domain))
+    # new_profile[1000:len(profile) + 1000] = profile
+    # profile = new_profile
 
 
     derivatives = get_derivative(profile)
@@ -63,6 +63,16 @@ def create_solitons(filename: str) -> None:
     axarr[0].get_xaxis().set_minor_locator(mplt.MultipleLocator(10))
     plt.savefig('./out.png')
     plt.show()
+
+    fig = plt.figure()
+    ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+    ax.plot(domain, profile, 'b-')
+    ax.set_title('Initial Profile')
+    ax.set_ylim(1, 6)
+    ax.get_xaxis().set_major_locator(mplt.MultipleLocator(50))
+    ax.get_xaxis().set_major_formatter(mplt.FormatStrFormatter('%d'))
+    ax.get_xaxis().set_minor_locator(mplt.MultipleLocator(10))
+    plt.savefig('./initialprof.png')
 
     output = {'domain': domain, 'area': profile, 'area_derivative': derivatives}
     sco.savemat(filename, output)
