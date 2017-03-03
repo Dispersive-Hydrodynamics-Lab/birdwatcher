@@ -45,6 +45,7 @@ def main():
     args = get_args()
 
     if args.testing:
+        print(args)
         return
 
     logging.getLogger('ouroboros')
