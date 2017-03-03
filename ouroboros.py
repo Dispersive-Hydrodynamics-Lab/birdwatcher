@@ -123,17 +123,6 @@ def main():
     deletion_queue.put(DEATH)
     deleter.join()
 
-    return  # let's not get willy nilly with emails yet....
-    print('Sending exit email')
-    response = requests.post(
-        "https://api.mailgun.net/v3/sandbox25180cb882f84eaa8ba60b5dfd6572f7.mailgun.org/messages",
-        auth=("api", "key-4d2898c04ec3e73b75567539a49d2074"),
-        data={"from": "Mailgun Sandbox <postmaster@sandbox25180cb882f84eaa8ba60b5dfd6572f7.mailgun.org>",
-              "to": "William Farmer <will@nidhogg.io>",
-              "subject": "WATCHER EXIT",
-              "text": "PROGRAM QUIT (HOPEFULLY THAT WAS GOOD)"})
-    logging.info('SENT EMAIL WITH STATUS: {}'.format(response.status_code))
-
 
 class SimulationHandler(FileSystemEventHandler):
     def __init__(self, q, *args, **kwargs):

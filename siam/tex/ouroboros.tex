@@ -5,7 +5,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Beginning of document items - headers, title, toc, etc...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[Ouroboros]{Creating a One Dimensional\\Soliton Gas in Viscous Fluid}
+\title[Ouroboros]{Creating a One Dimensional\\Soliton Gas in Viscous Fluid
+Conduits}
     \author{Will Farmer\\\url{www.will-farmer.com}}
 \institute{University of Colorado, Boulder\\
             Advisors: Mark Hoefer, Michelle Maiden}
@@ -117,37 +118,22 @@
     \frametitle{High Level Overview}
 
     \begin{enumerate}
-        \item Conduit environment and equations that govern.
-        \item Solitons, their properties, how they interact.
-        \item Definition of soliton gas, its properties.
-        \item Testing through simulations.
-        \item Recurrence implications.
-        \item Measuring a ``gas metric''.
-        \item Running in parallel.
-        \item Initial results.
+        \item What are Conduits
+        \item What are solitons?
+        \item What's a soliton gas?
+        \item Simulations...
     \end{enumerate}
 }
 
 \frame{%
-    \frametitle{What's our Environment?}
-    \begin{columns}[T]
-        \column{0.5\textwidth}
-        \textbf{Viscous Fluid Conduits}
-        \begin{itemize}
-            \item Two viscous fluids, with inner forming axisymmetric conduit.
-            \item Exterior Fluid: $\rho^{(e)}$ density and $\mu^{(e)}$ viscosity
-            \item Interior Fluid: $\rho^{(i)}$ density and $\mu^{(i)}$ viscosity
-            \item $\rho^{(i)} < \rho^{(e)} \Rightarrow$ buoyant flow
-            \item $\mu^{(i)} << \mu^{(e)} \Rightarrow$ minimal drag
-            \item $\text{Re} << 1 \Rightarrow$ low Reynold's number (implies
-                Laminar flow)
-        \end{itemize}
-        \column{0.5\textwidth}
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.15]{./img/conduit.png}
-        \end{figure}
-    \end{columns}
+    \frametitle{The Conduit}
+
+    TODO
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{./img/soliton.png}
+    \end{figure}
 }
 
 \frame{%
@@ -172,15 +158,6 @@
 }
 
 \frame{%
-    \frametitle{Conduit Soliton}
-
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.5]{./img/soliton.png}
-    \end{figure}
-}
-
-\frame{%
     \frametitle{Soliton - Soliton Interactions}
 
     \begin{itemize}
@@ -197,7 +174,7 @@
 }
 
 \frame{%
-    \frametitle{Phase Shift}
+    \frametitle{Particle-like Interactions}
 
     \begin{figure}[H]
         \centering
@@ -237,22 +214,26 @@
     \frametitle{Properties of a Soliton Gas}
 
     \begin{itemize}
-        \item Soliton gas theory has been developed for simpler (integrable)
-            systems such as the Korteweg-de Vries equation (KDV)
-            \begin{align*}
-                \phi_t + \phi_{xxx} - 6 \phi \phi_x = 0
-            \end{align*}
-        \item Two main results
-            \begin{itemize}
-                \item There exists a compound Poisson process for the soliton centers and amplitudes
-                    \begin{itemize}
-                        \item This means over long time, $Z \sim
-                            Poisson(\lambda)$, and A is preserved
-                    \end{itemize}
-                \item A soliton passing through the gas has a correction to its
-                    speed that depends on the amplitude distribution of the gas
-            \end{itemize}
+        \item Soliton gas theory developed for simpler (integrable) systems.
+        \item Soliton centers and amplitudes $\Rightarrow$ compound Poisson process
+        \item This means over long time, frequency of solitons, $Z \sim
+            Poisson(\lambda)$, and A is preserved
+        \item Poisson Distribution: Number of events in interval with known
+            average rate and mutually independent events.
     \end{itemize}
+    \vspace{-0.8cm}
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.4]{./img/poisson.png}
+            \end{figure}
+        \column{0.5\textwidth}
+            \vspace{2cm}
+            \begin{align*}
+                f(k; \lambda) = \frac{\lambda^k e^{-\lambda}}{k!}
+            \end{align*}
+    \end{columns}
 }
 
 \frame{%
@@ -269,13 +250,14 @@
 }
 
 \frame{%
-    \frametitle{Recurrence}
+    \frametitle{Finite Size Effects}
 
     \begin{itemize}
         \item Since we have recurrence, eventually the simulation on $[0,L]$
             will tend back to initial conditions. We want to stop before then.
         \item Therefore we'll run two simulations simultaneously, one on $[0,L]$
-            and the other on $[0,2L]$.
+            and the other on $[0,2L]$.\footnote{D. S. Agafontsev and V. E.
+            Zakharov, Nonlinearity 28, 2791 (2015)}
         \item At each timestep we'll check for a compound Poisson gas process
             (``gas metric'') of each. If they differ by more than 20\%, we
             restart with new initial conditions.
@@ -416,5 +398,36 @@
         \item Funded by NSF EXTREEMS-QED
     \end{itemize}
 
+}
+
+\frame{%
+    \frametitle{Environment Details}
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \textbf{Viscous Fluid Conduits}
+        \begin{itemize}
+            \item Two viscous fluids, with inner forming axisymmetric conduit.
+            \item Exterior Fluid: $\rho^{(e)}$ density and $\mu^{(e)}$ viscosity
+            \item Interior Fluid: $\rho^{(i)}$ density and $\mu^{(i)}$ viscosity
+            \item $\rho^{(i)} < \rho^{(e)} \Rightarrow$ buoyant flow
+            \item $\mu^{(i)} << \mu^{(e)} \Rightarrow$ minimal drag
+            \item $\text{Re} << 1 \Rightarrow$ low Reynold's number (implies
+                Laminar flow)
+        \end{itemize}
+        \column{0.5\textwidth}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.15]{./img/conduit.png}
+        \end{figure}
+    \end{columns}
+}
+
+
+\frame{%
+    \frametitle{Integrable System: KDV}
+
+    \begin{align*}
+        u_t + u u_x + u_{xxx} = 0
+    \end{align*}
 }
 \end{document}
