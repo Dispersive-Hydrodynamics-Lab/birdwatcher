@@ -243,3 +243,19 @@
 2017-03-03 13:03:35,022 	 PARSER3	Received POISON PILL
 2017-03-03 13:03:35,022 	 PARSER3	Sent `DEATH`, dying gracefully.
 2017-03-03 13:03:35,106 	 DATABASE	Dying happily
+2017-03-14 09:47:40,669 	 ~~~STARTING~~~
+2017-03-14 09:47:40,669 	 Namespace(database='ouroboros.db', directory='.', goal=100, num_simulations=2, num_workers=8, testing=False)
+2017-03-14 09:47:40,688 	 DATABASE	Tables Created
+2017-03-14 09:47:57,258 	 ~~~CLOSING~~~
+2017-03-14 09:48:55,831 	 ~~~STARTING~~~
+2017-03-14 09:48:55,831 	 Namespace(database='ouroboros.db', directory='.', goal=100, num_simulations=2, num_workers=8, testing=False)
+2017-03-14 09:48:55,850 	 DATABASE	Tables Created
+2017-03-14 09:49:10,631 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-03-14 09:49:10,632 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-03-14 09:49:38,635 	 HANDLER	./data/conduit_eqtn_wnum_1_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-03-14 09:49:38,636 	 PARSER1	Received ./data/conduit_eqtn_wnum_1_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-03-14 09:49:43,973 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-03-14 09:49:43,976 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-03-14 09:49:49,580 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-03-14 09:49:49,582 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-03-14 09:49:50,507 	 ~~~CLOSING~~~
