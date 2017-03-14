@@ -128,12 +128,22 @@ Conduits}
 \frame{%
     \frametitle{The Conduit}
 
-    TODO
-
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.5]{./img/soliton.png}
-    \end{figure}
+    \begin{columns}[T]
+        \column{0.6\textwidth}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.27]{./img/solitonsmall.png}
+            \includegraphics[scale=0.15]{./img/conduit.png}
+        \end{figure}
+        \column{0.4\textwidth}
+        \vspace{2cm}
+        \begin{itemize}
+            \item Deformable pipe
+            \item Gravity is down
+            \item Rises because of buoyancy
+            \item Cross sectional area $A$
+        \end{itemize}
+    \end{columns}
 }
 
 \frame{%
@@ -221,12 +231,12 @@ Conduits}
         \item Poisson Distribution: Number of events in interval with known
             average rate and mutually independent events.
     \end{itemize}
-    \vspace{-0.8cm}
+    \vspace{-.8cm}
     \begin{columns}[T]
         \column{0.5\textwidth}
             \begin{figure}[H]
                 \centering
-                \includegraphics[scale=0.4]{./img/poisson.png}
+                \includegraphics[scale=0.3]{./img/poisson.png}
             \end{figure}
         \column{0.5\textwidth}
             \vspace{2cm}
@@ -234,6 +244,9 @@ Conduits}
                 f(k; \lambda) = \frac{\lambda^k e^{-\lambda}}{k!}
             \end{align*}
     \end{columns}
+    \vspace{-0.25cm}
+    {\tiny Kinetic Equation for a Dense Soliton Gas G. A. El and A. M.
+        Kamchatnov, PRL 95, 2005}
 }
 
 \frame{%
@@ -252,17 +265,45 @@ Conduits}
 \frame{%
     \frametitle{Finite Size Effects}
 
+    \textbf{How can we simulate an infinite conduit?}
+
     \begin{itemize}
-        \item Since we have recurrence, eventually the simulation on $[0,L]$
-            will tend back to initial conditions. We want to stop before then.
+        \item Since we have finite size effects, eventually the simulation on
+            $[0,L]$ will tend back to initial conditions. We want to stop before
+            then.
         \item Therefore we'll run two simulations simultaneously, one on $[0,L]$
-            and the other on $[0,2L]$.\footnote{D. S. Agafontsev and V. E.
-            Zakharov, Nonlinearity 28, 2791 (2015)}
+            and the other on $[0,2L]$.
         \item At each timestep we'll check for a compound Poisson gas process
-            (``gas metric'') of each. If they differ by more than 20\%, we
-            restart with new initial conditions.
-        \item Similarly, due to phase shifts, our gas metric should increase and
-            then decrease. We want to stop before this.
+            (``gas metric'') of each. If they differ significantly we restart
+            with new initial conditions.
+    \end{itemize}
+
+    {\tiny D. S. Agafontsev and V. E.  Zakharov, Nonlinearity 28, 2791 (2015)}
+}
+
+\frame{%
+    \frametitle{Plot of Initial Conditions}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{./img/IC.png}
+    \end{figure}
+}
+
+\frame{%
+    \frametitle{Initial Conditions}
+
+    \begin{itemize}
+        \item We have two random variables to simulate.
+        \item Very first case is easy
+        \begin{itemize}
+            \item $Z$ is one per minimum distance with exponentially small
+                overlap.
+            \item $A$ is $Unif\pren{\cren{2,2.5,3,3.5,4,4.5,5,5.5,6}}$
+        \end{itemize}
+    \item After restart on $2L$ and $4L$, need to create new IC's
+    \item Linear superposition \textit{does not} hold
+    \item Simulate with same gas metric as ended with.
     \end{itemize}
 }
 
@@ -286,42 +327,61 @@ Conduits}
     \frametitle{Meaning....}
 
     \begin{itemize}
-        \item Since this is a Poisson-Point Process the gap between points is
-            exponentially distributed.
+        \begin{columns}[T]
+            \column{0.4\textwidth}
+            \item Since this is a Poisson-Point Process the gap between points
+                is exponentially distributed.
+                \begin{align*}
+                    f(x; \lambda) = \lambda e^{-\lambda x}
+                \end{align*}
+            \column{0.4\textwidth}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.3]{./img/exponential.png}
+            \end{figure}
+        \end{columns}
         \item Therefore the gas metric is a measure of how close our gaps of our
             solitons are to the exponential distribution.
         \item We use the residual sum squared on the QQ-plot as a metric of
             ``distance'' from one distribution to the other. This value is our
             gas metric.
-        \item We find this gas metric at every timestep.
     \end{itemize}
 }
 
 \frame{%
-    \frametitle{Initial Conditions}
+    \frametitle{QQ Plots}
 
-    \begin{itemize}
-        \item We have two random variables to simulate.
-        \item Very first case is easy
-        \begin{itemize}
-            \item $Z$ is one per minimum distance with exponentially small
-                overlap.
-            \item $A$ is $Unif\pren{\cren{2,2.5,3,3.5,4,4.5,5,5.5,6}}$
-        \end{itemize}
-    \item After a restart on $2L$ and $4L$ things are trickier... We can't feed
-        initial conditions where solitons overlap (makes solver grumpy due to
-        nonlinear phenomena) so instead we need to simulate initial conditions
-        with same gas metric as last timestep before we quit.
-    \end{itemize}
-}
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+            \textbf{Quantiles}
 
-\frame{%
-    \frametitle{Plot of Initial Conditions}
+            If you have a given dataset, a quantile divides the dataset into
+            equally sized portions.
 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.5]{./img/IC.png}
-    \end{figure}
+            \textbf{QQ Plots}
+
+            Plotting quantiles of one distribution vs. quantiles of another.
+
+            \textbf{Residuals}
+
+            Distance from theoretical results to experimental.
+
+            \textbf{Residual Sum Squared}
+            \begin{align*}
+                RSS = \sum_{i=1}^n \pren{y_i - f(x_i)}^2
+            \end{align*}
+        \column{0.5\textwidth}
+        \vspace{-0.8cm}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.25]{./img/quantiles.png}
+            \end{figure}
+            \vspace{-1cm}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.24]{./img/qqplot.png}
+            \end{figure}
+    \end{columns}
 }
 
 \frame{%
@@ -361,12 +421,22 @@ Conduits}
 }
 
 \frame{%
-    \frametitle{Preliminary Results}
+    \frametitle{Data Storage}
 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.38]{./img/results.png}
-    \end{figure}
+    \textbf{SQLite database}
+    (2gb $\to$ 40mb from 2 experiments over 6 hours)
+    \begin{columns}[T]
+        \column{0.25\textwidth}
+            \begin{itemize}
+                \item simulations
+                \item parameters
+                \item t-values
+                \item peaks
+                \item gas metrics
+            \end{itemize}
+        \column{0.75\textwidth}
+        \inputminted[baselinestretch=1,fontsize=\tiny]{sql}{output.txt}
+    \end{columns}
 }
 
 \frame{%
@@ -381,6 +451,7 @@ Conduits}
 \frame{%
     \frametitle{References and Acknowledgements}
     \textbf{References}
+    {\tiny
     \begin{itemize}
         \item M. D. Maiden, N. K. Lowman, D. V. Anderson, M. E. Schubert, and M.
             A. Hoefer, Observation of dispersive shock waves, solitons, and
@@ -390,7 +461,10 @@ Conduits}
             amplitude solitary waves in viscous fluid conduits, Journal of Fluid
             Mechanics 750, 372-384 (2014).
         \item D. S. Agafontsev and V. E. Zakharov, Nonlinearity 28, 2791 (2015).
+        \item Kinetic Equation for a Dense Soliton Gas G. A. El and A. M.
+            Kamchatnov, PRL 95, 2005
     \end{itemize}
+    }
     \textbf{Acknowledgements}
     \begin{itemize}
         \item Mark Hoefer
