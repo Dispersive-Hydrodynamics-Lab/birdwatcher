@@ -6,8 +6,10 @@ import sys, os
 import random
 import argparse
 import time
-import threading
-import queue
+# import threading
+# import queue
+import multiprocessing as mp
+from multiprocessing import Queue
 import logging
 import requests
 import sqlite3 as sq
@@ -55,11 +57,16 @@ def main():
     logging.info('~~~STARTING~~~')
     logging.info(str(args))
 
-    parse_queue    = queue.Queue()
-    write_queue    = queue.Queue()
-    MATLAB_queue   = queue.Queue()
-    deletion_queue = queue.Queue()
-    done_queue     = queue.Queue()
+    # parse_queue    = queue.Queue()
+    # write_queue    = queue.Queue()
+    # MATLAB_queue   = queue.Queue()
+    # deletion_queue = queue.Queue()
+    # done_queue     = queue.Queue()
+    parse_queue    = Queue()
+    write_queue    = Queue()
+    MATLAB_queue   = Queue()
+    deletion_queue = Queue()
+    done_queue     = Queue()
 
     # don't ask why this is here
     sim = RunSimulation(MATLAB_queue, args.num_simulations)
@@ -139,7 +146,8 @@ class SimulationHandler(FileSystemEventHandler):
             self.files_to_parse.put(event.src_path)
 
 
-class Deleter(threading.Thread):
+# class Deleter(threading.Thread):
+class Deleter(mp.Process):
     def __init__(self, q, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.input_queue = q
@@ -161,7 +169,8 @@ class Deleter(threading.Thread):
                 self.files_for_deletion[sim_name] = [self.files_for_deletion[sim_name][-1]]
 
 
-class ParseFile(threading.Thread):
+# class ParseFile(threading.Thread):
+class ParseFile(mp.Process):
     def __init__(self, q0, q1, q2, i, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.files_to_parse = q0
@@ -330,7 +339,8 @@ class ParseFile(threading.Thread):
         return derivative
 
 
-class Database(threading.Thread):
+# class Database(threading.Thread):
+class Database(mp.Process):
     def __init__(self, filename, q0, q1, sim, done, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.filename     = filename
@@ -440,65 +450,68 @@ class Database(threading.Thread):
                     break
                 # Now check to see if we're past threshold (arbitrary 10%)
                 # First get the min of the two maxtimes and their corresponding p vals
-                dirs = {d: 0 for d in self.sim.get_both_dirnames(os.path.basename(directory))}
-                abort_flag = False
-                for d in dirs:
-                    c.execute('SELECT id FROM simulations WHERE directory=?', (d,))
-                    result = c.fetchall()
-                    if len(result) == 0:
-                        abort_flag = True
-                        break
-                    else:
-                        sim_id = result[0][0]
-                    c.execute('SELECT MAX(t), p FROM poissonness WHERE simulationid=?', (sim_id,))
-                    result = c.fetchall()
-                    if len(result) != 0:
-                        dirs[d] = result[0]
-                for d, (t, p) in dirs.items():
-                    if t is None or p is None:
-                        abort_flag = True
-                if not abort_flag:
-                    mintime = min(t for _, (t, _) in dirs.items())
-                    for d, (t, p) in dirs.items():
+                bothdirs = self.sim.get_both_dirnames(os.path.basename(directory))
+                if bothdirs is not None:
+                    dirs = {d: 0 for d in bothdirs}
+                    abort_flag = False
+                    for d in dirs:
                         c.execute('SELECT id FROM simulations WHERE directory=?', (d,))
-                        sim_id = c.fetchall()[0][0]
-                        if t != mintime:
-                            c.execute('SELECT t, p FROM poissonness WHERE simulationid=? AND t=?',
-                                      (sim_id, mintime))
-                            dirs[d] = c.fetchall()[0]
-                    # Now we can compare
-                    pvals = [p for _, (_, p) in dirs.items()]
-                    if np.abs((pvals[0] / pvals[1]) - 1) > 0.2:
-                        # Stop
-                        self.MATLAB_queue.put(('KILL BY DIR', list(dirs.keys())[0]))
-                        # and restart
-                        info = []
-                        for d in dirs:
-                            c.execute(('SELECT simulations.id, parameters.zmax, simulations.wnum '
-                                           'FROM simulations '
-                                           'INNER JOIN parameters '
-                                           'ON simulations.id = parameters.simulationid '
-                                           'WHERE simulations.directory=?'), (d,))
-                            info.append(c.fetchall()[0])
-                        old_2l_zmax = max(info[0][1], info[1][1])
-                        old_run_num = max(info[0][0], info[1][0])
-                        initial_profile_L1 = ParseFile.generate_initial_profile_by_cdf(old_2l_zmax,
-                                                                                       ecdf,
-                                                                                       old_run_num + 1,
-                                                                                       info[0][1]**2,
-                                                                                       info[0][2])
-                        initial_profile_L2 = ParseFile.generate_initial_profile_by_cdf(old_2l_zmax * 2,
-                                                                                       ecdf,
-                                                                                       old_run_num + 2,
-                                                                                       info[0][1]**2,
-                                                                                       info[0][2])
-                        print('~~~~~~~~~~~~~~~~~~~~~~~ROTATING~~~~~~~~~~~~~~~~~~~~~~~')
-                        self.MATLAB_queue.put(('runN', (initial_profile_L1, initial_profile_L2)))
+                        result = c.fetchall()
+                        if len(result) == 0:
+                            abort_flag = True
+                            break
+                        else:
+                            sim_id = result[0][0]
+                        c.execute('SELECT MAX(t), p FROM poissonness WHERE simulationid=?', (sim_id,))
+                        result = c.fetchall()
+                        if len(result) != 0:
+                            dirs[d] = result[0]
+                    for d, (t, p) in dirs.items():
+                        if t is None or p is None:
+                            abort_flag = True
+                    if not abort_flag:
+                        mintime = min(t for _, (t, _) in dirs.items())
+                        for d, (t, p) in dirs.items():
+                            c.execute('SELECT id FROM simulations WHERE directory=?', (d,))
+                            sim_id = c.fetchall()[0][0]
+                            if t != mintime:
+                                c.execute('SELECT t, p FROM poissonness WHERE simulationid=? AND t=?',
+                                          (sim_id, mintime))
+                                dirs[d] = c.fetchall()[0]
+                        # Now we can compare
+                        pvals = [p for _, (_, p) in dirs.items()]
+                        if np.abs((pvals[0] / pvals[1]) - 1) > 0.2:
+                            # Stop
+                            self.MATLAB_queue.put(('KILL BY DIR', list(dirs.keys())[0]))
+                            # and restart
+                            info = []
+                            for d in dirs:
+                                c.execute(('SELECT simulations.id, parameters.zmax, simulations.wnum '
+                                               'FROM simulations '
+                                               'INNER JOIN parameters '
+                                               'ON simulations.id = parameters.simulationid '
+                                               'WHERE simulations.directory=?'), (d,))
+                                info.append(c.fetchall()[0])
+                            old_2l_zmax = max(info[0][1], info[1][1])
+                            old_run_num = max(info[0][0], info[1][0])
+                            initial_profile_L1 = ParseFile.generate_initial_profile_by_cdf(old_2l_zmax,
+                                                                                           ecdf,
+                                                                                           old_run_num + 1,
+                                                                                           info[0][1]**2,
+                                                                                           info[0][2])
+                            initial_profile_L2 = ParseFile.generate_initial_profile_by_cdf(old_2l_zmax * 2,
+                                                                                           ecdf,
+                                                                                           old_run_num + 2,
+                                                                                           info[0][1]**2,
+                                                                                           info[0][2])
+                            print('~~~~~~~~~~~~~~~~~~~~~~~ROTATING~~~~~~~~~~~~~~~~~~~~~~~')
+                            self.MATLAB_queue.put(('runN', (initial_profile_L1, initial_profile_L2)))
                 c.close()
 
 
 
-class RunSimulation(threading.Thread):
+# class RunSimulation(threading.Thread):
+class RunSimulation(mp.Process):
     def __init__(self, input_queue, num_simulations, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.command_queue = input_queue
@@ -538,7 +551,8 @@ class RunSimulation(threading.Thread):
                 name = message[0]
                 self.jobs[name] = {}
                 for profile in message[1]:
-                    message_queue = queue.Queue()
+                    # message_queue = queue.Queue()
+                    message_queue = Queue()
                     j = MATLABScript(message_queue,
                                      (float(profile['iter']),
                                       float(profile['wnum']),
@@ -556,7 +570,8 @@ class RunSimulation(threading.Thread):
                     self.jobs[name][jobname] = (j, message_queue)
 
 
-class MATLABScript(threading.Thread):
+# class MATLABScript(threading.Thread):
+class MATLABScript(mp.Process):
     def __init__(self, message_queue, fargs, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.message_queue = message_queue
