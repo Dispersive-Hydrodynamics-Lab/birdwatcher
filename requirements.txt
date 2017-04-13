@@ -1,0 +1,12 @@
+requests
+tqdm
+
+watchdog
+
+numpy
+
+statsmodels
+
+scipy
+
+typing

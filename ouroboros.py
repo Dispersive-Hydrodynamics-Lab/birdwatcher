@@ -48,6 +48,7 @@ def main():
 
     if args.testing:
         print(args)
+        time.sleep(10)
         return
 
     logging.getLogger('ouroboros')
