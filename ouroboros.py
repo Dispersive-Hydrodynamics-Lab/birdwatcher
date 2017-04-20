@@ -481,7 +481,9 @@ class Database(mp.Process):
                                 dirs[d] = c.fetchall()[0]
                         # Now we can compare
                         pvals = [p for _, (_, p) in dirs.items()]
-                        if np.abs((pvals[0] / pvals[1]) - 1) > 0.2:
+                        theo = min(pvals[0], pvals[1])
+                        exp  = max(pvals[0], pvals[1])
+                        if np.abs((theo - exp) / theo) > 0.2:
                             # Stop
                             self.MATLAB_queue.put(('KILL BY DIR', list(dirs.keys())[0]))
                             # and restart
