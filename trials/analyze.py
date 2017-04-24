@@ -54,13 +54,15 @@ def main():
 
         wsims.append(simdata)
 
+    all_points = np.zeros((sum(len(x) for x in simdata), 2))
+    offset = 0
+    for i, x in enumerate(simdata):
+        all_points[offset:(offset + len(x))] = x
+        offset += len(x)
+
     plt.figure(figsize=(8, 8))
 
-    for pair in wsims:
-        short = True
-        for data in pair:
-            plt.plot(data[:, 0], data[:, 1], ('r-' if short else 'b-'))
-            short ^= True
+    plt.scatter(all_points[:, 0], all_points[:, 1])
 
     plt.savefig('out.png')
 
