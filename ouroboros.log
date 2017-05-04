@@ -1,0 +1,186 @@
+2017-04-27 14:46:22,932 	 ~~~STARTING~~~
+2017-04-27 14:46:22,934 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-04-27 14:46:23,089 	 DATABASE	Tables Created
+2017-04-27 14:47:01,422 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
+2017-04-27 14:47:01,423 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-04-27 14:47:11,925 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat created. Adding to Queue
+2017-04-27 14:47:11,927 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
+2017-04-27 14:47:17,609 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-04-27 14:47:17,611 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-04-27 14:47:22,861 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat created. Adding to Queue
+2017-04-27 14:47:22,863 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
+2017-04-27 14:47:34,066 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat created. Adding to Queue
+2017-04-27 14:47:34,067 	 PARSER4	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat
+2017-04-27 14:47:40,982 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
+2017-04-27 14:47:40,985 	 PARSER5	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-04-27 14:47:46,081 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat created. Adding to Queue
+2017-04-27 14:47:46,081 	 PARSER6	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat
+2017-04-27 14:47:57,892 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat created. Adding to Queue
+2017-04-27 14:47:57,894 	 PARSER7	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat
+2017-04-27 14:48:06,425 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat created. Adding to Queue
+2017-04-27 14:48:06,427 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
+2017-04-27 14:48:09,117 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00010.mat created. Adding to Queue
+2017-04-27 14:48:09,121 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00010.mat
+2017-04-27 14:48:21,503 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00011.mat created. Adding to Queue
+2017-04-27 14:48:21,503 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00011.mat
+2017-04-27 14:48:32,704 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat created. Adding to Queue
+2017-04-27 14:48:32,705 	 PARSER4	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
+2017-04-27 14:48:33,237 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00012.mat created. Adding to Queue
+2017-04-27 14:48:33,238 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00012.mat
+2017-04-27 14:48:33,899 	 ~~~CLOSING~~~
+2017-04-27 14:49:51,385 	 ~~~STARTING~~~
+2017-04-27 14:49:51,385 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-04-27 14:49:51,413 	 DATABASE	Tables Created
+2017-04-27 14:50:37,856 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
+2017-04-27 14:50:37,861 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-04-27 14:50:49,981 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat created. Adding to Queue
+2017-04-27 14:50:49,983 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
+2017-04-27 14:50:58,107 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-04-27 14:50:58,110 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-04-27 14:51:01,337 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat created. Adding to Queue
+2017-04-27 14:51:01,338 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00006.mat
+2017-04-27 14:51:06,184 	 ~~~CLOSING~~~
+2017-04-27 14:52:24,617 	 ~~~STARTING~~~
+2017-04-27 14:52:24,617 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-04-27 14:52:24,640 	 DATABASE	Tables Created
+2017-04-27 14:53:10,644 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
+2017-04-27 14:53:10,645 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-04-27 14:53:22,413 	 ~~~CLOSING~~~
+2017-04-27 14:54:07,907 	 ~~~STARTING~~~
+2017-04-27 14:54:07,907 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-04-27 14:54:07,927 	 DATABASE	Tables Created
+2017-04-27 14:54:22,446 	 ~~~CLOSING~~~
+2017-04-27 14:55:49,018 	 ~~~STARTING~~~
+2017-04-27 14:55:49,018 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-04-27 14:55:49,040 	 DATABASE	Tables Created
+2017-04-27 14:56:32,720 	 ~~~CLOSING~~~
+2017-04-27 14:58:51,934 	 ~~~STARTING~~~
+2017-04-27 14:58:51,934 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-04-27 14:58:51,954 	 DATABASE	Tables Created
+2017-04-27 14:59:07,092 	 ~~~CLOSING~~~
+2017-04-27 14:59:12,404 	 ~~~STARTING~~~
+2017-04-27 14:59:12,405 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-04-27 14:59:12,496 	 DATABASE	Tables Created
+2017-04-27 15:00:28,660 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat created. Adding to Queue
+2017-04-27 15:00:28,661 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00007.mat
+2017-04-27 15:00:36,329 	 ~~~CLOSING~~~
+2017-04-27 15:00:40,441 	 ~~~STARTING~~~
+2017-04-27 15:00:40,441 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-04-27 15:00:40,588 	 DATABASE	Tables Created
+2017-04-27 15:01:40,745 	 ~~~CLOSING~~~
+2017-04-27 15:02:17,130 	 ~~~STARTING~~~
+2017-04-27 15:02:17,130 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-04-27 15:02:17,277 	 DATABASE	Tables Created
+2017-04-27 15:03:35,360 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat created. Adding to Queue
+2017-04-27 15:03:35,362 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00008.mat
+2017-04-27 15:03:45,129 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat created. Adding to Queue
+2017-04-27 15:03:45,130 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00009.mat
+2017-04-27 15:03:48,718 	 ~~~CLOSING~~~
+2017-05-04 10:28:08,377 	 ~~~STARTING~~~
+2017-05-04 10:28:08,378 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 10:28:08,398 	 DATABASE	Tables Created
+2017-05-04 10:28:33,772 	 ~~~CLOSING~~~
+2017-05-04 10:29:19,424 	 ~~~STARTING~~~
+2017-05-04 10:29:19,424 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 10:29:19,563 	 DATABASE	Tables Created
+2017-05-04 10:29:30,321 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 10:29:30,322 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 10:29:31,007 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 10:29:31,007 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 10:29:39,506 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-05-04 10:29:39,506 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-05-04 10:29:48,299 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-05-04 10:29:48,300 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-05-04 10:29:53,453 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-05-04 10:29:53,455 	 PARSER4	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-05-04 10:29:53,591 	 ~~~CLOSING~~~
+2017-05-04 10:50:56,082 	 ~~~STARTING~~~
+2017-05-04 10:50:56,082 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 10:50:56,219 	 DATABASE	Tables Created
+2017-05-04 10:51:08,266 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 10:51:08,289 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 10:51:10,898 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 10:51:10,899 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 10:51:19,858 	 ~~~CLOSING~~~
+2017-05-04 11:00:25,376 	 ~~~STARTING~~~
+2017-05-04 11:00:25,376 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 11:00:25,510 	 DATABASE	Tables Created
+2017-05-04 11:00:41,527 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:00:41,545 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:00:46,349 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:00:46,350 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:00:50,738 	 ~~~CLOSING~~~
+2017-05-04 11:00:53,685 	 ~~~STARTING~~~
+2017-05-04 11:00:53,686 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 11:00:53,815 	 DATABASE	Tables Created
+2017-05-04 11:01:09,501 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:01:09,502 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:01:12,307 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:01:12,308 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:01:23,689 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-05-04 11:01:23,691 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-05-04 11:01:24,356 	 ~~~CLOSING~~~
+2017-05-04 11:02:41,843 	 ~~~STARTING~~~
+2017-05-04 11:02:41,843 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 11:02:41,970 	 DATABASE	Tables Created
+2017-05-04 11:02:55,664 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:02:55,668 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:02:58,071 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:02:58,071 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:03:07,533 	 ~~~CLOSING~~~
+2017-05-04 11:05:00,823 	 ~~~STARTING~~~
+2017-05-04 11:05:00,823 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 11:05:00,956 	 DATABASE	Tables Created
+2017-05-04 11:05:13,868 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:05:13,869 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:05:15,869 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:05:15,879 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:05:25,368 	 ~~~CLOSING~~~
+2017-05-04 11:05:52,930 	 ~~~STARTING~~~
+2017-05-04 11:05:52,930 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 11:05:53,058 	 DATABASE	Tables Created
+2017-05-04 11:06:10,671 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:06:10,674 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:06:13,682 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:06:13,685 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:06:21,899 	 ~~~CLOSING~~~
+2017-05-04 11:06:54,915 	 ~~~STARTING~~~
+2017-05-04 11:06:54,915 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 11:06:55,033 	 DATABASE	Tables Created
+2017-05-04 11:07:08,208 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:07:08,209 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:07:09,522 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:07:09,524 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:07:20,343 	 ~~~CLOSING~~~
+2017-05-04 11:07:31,936 	 ~~~STARTING~~~
+2017-05-04 11:07:31,936 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 11:07:32,042 	 DATABASE	Tables Created
+2017-05-04 11:07:47,475 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:07:47,476 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:07:49,185 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:07:49,188 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:08:00,445 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-05-04 11:08:00,446 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-05-04 11:08:11,284 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-05-04 11:08:11,289 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-05-04 11:08:17,125 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-05-04 11:08:17,127 	 PARSER4	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-05-04 11:08:28,745 	 ~~~CLOSING~~~
+2017-05-04 11:09:04,384 	 ~~~STARTING~~~
+2017-05-04 11:09:04,384 	 Namespace(database='ouroboros.db', directory='.', goal=20, num_simulations=1, num_workers=8, testing=False)
+2017-05-04 11:09:04,544 	 DATABASE	Tables Created
+2017-05-04 11:09:20,072 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:09:20,092 	 PARSER0	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:09:22,837 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat created. Adding to Queue
+2017-05-04 11:09:22,838 	 PARSER1	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00001.mat
+2017-05-04 11:09:33,035 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-05-04 11:09:33,037 	 PARSER2	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-05-04 11:09:45,006 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat created. Adding to Queue
+2017-05-04 11:09:45,007 	 PARSER3	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00003.mat
+2017-05-04 11:09:50,968 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat created. Adding to Queue
+2017-05-04 11:09:50,969 	 PARSER4	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_1000_Nz_100000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00002.mat
+2017-05-04 11:09:57,585 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat created. Adding to Queue
+2017-05-04 11:09:57,586 	 PARSER5	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00004.mat
+2017-05-04 11:10:09,854 	 HANDLER	./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat created. Adding to Queue
+2017-05-04 11:10:09,856 	 PARSER6	Received ./data/conduit_eqtn_wnum_0_tmax_600_zmax_500_Nz_50000_order_4_init_condns_soligas_iter_1_bndry_condns_periodic/00005.mat
+2017-05-04 11:10:11,500 	 ~~~CLOSING~~~

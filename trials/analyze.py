@@ -17,11 +17,14 @@ import sqlite3
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn
+import pandas as pd
+import re
 
 
 def main():
     args = get_args()
 
+    # find db in directory provided
     db_file = None
     for root, dirs, files in os.walk(args.directory):
         for file in files:
@@ -33,38 +36,105 @@ def main():
     else:
         raise FileNotFoundError('No database file')
 
+    # connect to db
     conn = sqlite3.connect(db_file)
     c = conn.cursor()
 
-    # first lets get all the simulationids
-    c.execute('SELECT wnum FROM simulations ORDER BY wnum ASC')
-    workers = [tup[0] for tup in c.fetchall()]
+    ####################################################################################################################
+    # POISSONNESS OVER TIME
+    ####################################################################################################################
+    # let's first get all the distinct worker nums
+    c.execute(
+        """
+        SELECT
+            A.simulationid, B.wnum, B.directory, A.t, A.p
+        FROM poissonness AS A
+        INNER JOIN simulations AS B ON A.simulationid = B.id
+        ORDER BY A.simulationid, B.wnum ASC;
+        """
+    )
+    data = c.fetchall()
 
-    wsims = []
-    for w in workers:
-        c.execute('SELECT id FROM simulations WHERE wnum=?', (w,))
-        sims = [tup[0] for tup in c.fetchall()]
+    # convert to dataframe
+    data = pd.DataFrame(data, columns=['id', 'worker', 'name', 'time', 'poisval'])
 
-        simdata = []
-        for sim in sims:
-            c.execute('SELECT t, p FROM poissonness WHERE simulationid=?', (sim,))
-            simdata.append(np.array(c.fetchall()))
+    # get plotcount
+    plotcount = len(data['worker'].unique())
 
-        simdata.sort(key=lambda x: len(x))
+    # pull out the useful part of the name
+    data['name'] = data['name'].apply(lambda x: re.findall('^.*(zmax_[0-9]+).*$', x)[0])
 
-        wsims.append(simdata)
+    groups = data.\
+        groupby(['worker', 'id'])
 
-    all_points = np.zeros((sum(len(x) for x in simdata), 2))
-    offset = 0
-    for i, x in enumerate(simdata):
-        all_points[offset:(offset + len(x))] = x
-        offset += len(x)
+    # plot each group on plot corresponding to wnum & simid
+    # MAY HAVE TO TWEAK FIGSIZE EACH TIME
+    fig, axarr = plt.subplots(plotcount, 1, figsize=(8, 16))
+    for key, group in groups:
+        axarr[key[0]].plot(group['time'], group['poisval'], label=group['name'].iloc[0])
+        axarr[key[0]].set_xlabel('Timestep of Simulation')
+        axarr[key[0]].set_ylabel('Error')
+        axarr[key[0]].legend(loc='upper right')
+    plt.tight_layout()
+    plt.savefig('poissonness.png')
 
-    plt.figure(figsize=(8, 8))
+    ####################################################################################################################
+    # AMPLITUDES OVER TIME
+    ####################################################################################################################
+    c.execute("""
+        SELECT
+            A.simulationid, B.wnum, B.directory, A.t, A.x, A.y
+        FROM peaks AS A
+        INNER JOIN simulations AS B
+        ON A.simulationid = B.id
+        ORDER BY A.simulationid, B.wnum ASC;
+    """)
+    data = c.fetchall()
 
-    plt.scatter(all_points[:, 0], all_points[:, 1])
+    data = pd.DataFrame(data, columns=['id', 'worker', 'name', 't', 'x', 'y'])
 
-    plt.savefig('out.png')
+    # pull out the useful part of the name
+    data['name'] = data['name'].apply(lambda x: re.findall('^.*(zmax_[0-9]+).*$', x)[0])
+
+    groups = data.groupby(['worker', 'id'])
+
+    fig, axarr = plt.subplots(plotcount * 2, 1, figsize=(8, 32))
+    hist_bins = np.linspace(1, 7, 10)
+    flag = False
+    for key, group in groups:
+        segments = group.groupby(['t'])
+        array = np.zeros((len(hist_bins) - 1, len(segments)))
+        for i, (tval, segment) in enumerate(segments):
+            hist_vals = np.histogram(segment.y.values, bins=hist_bins)[0]
+            array[:, i] = hist_vals
+
+        index = 2 * key[0]
+        if flag:
+            index = 2 * key[0] + 1
+            flag = False
+        else:
+            flag = True
+        axarr[index].imshow(array, interpolation='nearest')
+
+        axarr[index].axis('off')
+
+    plt.tight_layout()
+    plt.savefig('center_histograms.png')
+
+
+
+    ####################
+    c.execute("""
+        SELECT A.simulationid, A.t, A.p, B.p, ABS(A.p - B.p) / MIN(A.p, B.p)
+        FROM (SELECT * FROM poissonness WHERE simulationid=1) AS A
+        INNER JOIN (SELECT * FROM poissonness WHERE simulationid=3) AS B
+        ON A.t = B.t
+    """)
+    data = pd.DataFrame(c.fetchall(), columns=['id', 't', 'Ap', 'Bp', 'error'])
+
+    data.plot(x='t', y='error')
+    plt.show()
+
 
 
 def get_args():
@@ -74,7 +144,6 @@ def get_args():
     args = parser.parse_args()
     args.directory = args.directory[0]
     return args
-
 
 
 if __name__ == '__main__':

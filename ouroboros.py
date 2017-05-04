@@ -9,7 +9,7 @@ import time
 # import threading
 # import queue
 import multiprocessing as mp
-from multiprocessing import Queue
+from multiprocessing import Queue, Value, Array
 import logging
 import requests
 import sqlite3 as sq
@@ -69,8 +69,10 @@ def main():
     deletion_queue = Queue()
     done_queue     = Queue()
 
+    sim_output_queue = Queue()
+
     # don't ask why this is here
-    sim = RunSimulation(MATLAB_queue, args.num_simulations)
+    sim = RunSimulation(MATLAB_queue, sim_output_queue, args.num_simulations)
 
     print('(1/5) Starting Filesystem Observer')
     handler = SimulationHandler(parse_queue)
@@ -79,7 +81,7 @@ def main():
     observer.start()
 
     print('(2/5) Starting Database')
-    db = Database(args.database, write_queue, MATLAB_queue, sim, done_queue)
+    db = Database(args.database, write_queue, MATLAB_queue, sim_output_queue, sim, done_queue)
     db.start()
 
     print('(3/5) Starting Workers')
@@ -342,13 +344,14 @@ class ParseFile(mp.Process):
 
 # class Database(threading.Thread):
 class Database(mp.Process):
-    def __init__(self, filename, q0, q1, sim, done, *args, **kwargs):
+    def __init__(self, filename, q0, q1, sim_output, sim, done, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.filename     = filename
         self.write_queue  = q0
         self.MATLAB_queue = q1
         self.done_queue   = done
         self.sim          = sim
+        self.sim_output   = sim_output
         self._init_db()
 
     def log(self, message):
@@ -449,11 +452,28 @@ class Database(mp.Process):
                     c.close()
                     conn.close()
                     break
-                # Now check to see if we're past threshold (arbitrary 10%)
+                # Now check to see if we're past threshold (arbitrary)
                 # First get the min of the two maxtimes and their corresponding p vals
-                bothdirs = self.sim.get_both_dirnames(os.path.basename(directory))
+                self.MATLAB_queue.put(('GET DIRNAMES',))
+                while True:
+                    message = self.sim_output.get()
+                    break
+                dir1 = os.path.basename(directory)
+                dir2 = None
+                for d1, d2 in message:
+                    if dir1 == d1:
+                        dir2 = d2
+                        break
+                    elif dir1 == d2:
+                        dir2 = d1
+                        break
+                bothdirs = [dir1, dir2] if dir2 is not None else None
+                # first check that these dirs exist, in other words, that the sim has started
                 if bothdirs is not None:
+                    # dict of names
                     dirs = {d: 0 for d in bothdirs}
+                    # We now go through and check that both sims have a simulation entry
+                    # (this does not imply a completed timestep)
                     abort_flag = False
                     for d in dirs:
                         c.execute('SELECT id FROM simulations WHERE directory=?', (d,))
@@ -463,30 +483,33 @@ class Database(mp.Process):
                             break
                         else:
                             sim_id = result[0][0]
+                        # assuming that the id exists, grab the latest time value from each and its poisson val
                         c.execute('SELECT MAX(t), p FROM poissonness WHERE simulationid=?', (sim_id,))
                         result = c.fetchall()
-                        if len(result) != 0:
+                        if len(result) != 0 and result[0][0] is not None and result[0][1] is not None:
                             dirs[d] = result[0]
-                    for d, (t, p) in dirs.items():
-                        if t is None or p is None:
+                        else:
+                            # if no results, in other words, no poissonness has been saved for this sim yet
+                            # We don't want to check
                             abort_flag = True
+                    # if one or more of the ids didn't exist, we don't bother checking
                     if not abort_flag:
+                        # pull out the minimum timestep from the two that we have
                         mintime = min(t for _, (t, _) in dirs.items())
                         for d, (t, p) in dirs.items():
+                            # re-grab the id for the corresponding sim
                             c.execute('SELECT id FROM simulations WHERE directory=?', (d,))
                             sim_id = c.fetchall()[0][0]
+                            # if the t we have already pulled doesn't match our mintime, pull that timestamp and poissonness
                             if t != mintime:
                                 c.execute('SELECT t, p FROM poissonness WHERE simulationid=? AND t=?',
                                           (sim_id, mintime))
                                 dirs[d] = c.fetchall()[0]
                         # Now we can compare
                         pvals = [p for _, (_, p) in dirs.items()]
-                        theo = min(pvals[0], pvals[1])
-                        exp  = max(pvals[0], pvals[1])
                         # THIS IS THE MOST FINACKY PART
-                        # 0.2 does not work
-                        # 0.1 does not work
-                        if np.abs((theo - exp) / theo) > 0.01:
+                        # hopefully this works now
+                        if np.abs(pvals[0] - pvals[1]) / min(pvals) > 0.1:
                             # Stop
                             self.MATLAB_queue.put(('KILL BY DIR', list(dirs.keys())[0]))
                             # and restart
@@ -518,19 +541,12 @@ class Database(mp.Process):
 
 # class RunSimulation(threading.Thread):
 class RunSimulation(mp.Process):
-    def __init__(self, input_queue, num_simulations, *args, **kwargs):
+    def __init__(self, input_queue, output_queue, num_simulations, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.command_queue = input_queue
         self.num_simulations = num_simulations
         self.jobs = {}
-
-    def get_both_dirnames(self, dir1):
-        dirs = None
-        for runname, jobs in self.jobs.items():
-            if dir1 in list(jobs.keys()):
-                dirs = list(jobs.keys())
-                break
-        return dirs
+        self.output_queue = output_queue
 
     def run(self):
         while True:
@@ -553,7 +569,10 @@ class RunSimulation(mp.Process):
                         break
                 for jobname, (job, q) in self.jobs[run_name].items():
                     q.put(DEATH)
+            elif message[0] == 'GET DIRNAMES':
+                self.output_queue.put([list(j.keys()) for r, j in self.jobs.items()])
             else:
+                # name here is the name of the job, not the two SIMS!!!! FUCK
                 name = message[0]
                 self.jobs[name] = {}
                 for profile in message[1]:
